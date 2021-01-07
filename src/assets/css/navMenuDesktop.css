@@ -1,0 +1,18 @@
+.nav-logo{
+    width: 100px;
+    height: 30px;
+}
+.cart-btn{
+    padding: 5px 15px 5px 15px;
+    color: #FAFDFB;
+    border-radius: 20px !important;
+    border:0.5px solid #E43023;
+    background: #E43023 !important;
+}
+.navbar{
+    font-family: 'Roboto Condensed',sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: white !important;
+    box-shadow: 0 0 8px 0 rgba(57,78,234, 0.1);
+}

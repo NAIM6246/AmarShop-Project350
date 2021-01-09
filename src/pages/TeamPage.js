@@ -5,11 +5,6 @@ import NavMenuDesktop from '../components/common/NavMenuDesktop';
 import NavMenuMobile from '../components/common/NavMenuMobile';
 import Team from '../components/others/Team';
 class TeamPage extends Component {
-
-   componentDidMount() {
-      window.scroll(0,0)
-   }
-   
     render() {
         return (
             <Fragment>

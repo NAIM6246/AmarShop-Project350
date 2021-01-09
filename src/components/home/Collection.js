@@ -1,6 +1,5 @@
 import React, { Component,Fragment} from 'react';
 import {Row,Container,Col,Card} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 class Collection extends Component {
     render() {
         return (
@@ -10,7 +9,6 @@ class Collection extends Component {
                 <p className="section-sub-title text-center">Some Of Our Exclusive Collection, You May Like</p>
                 <Row>
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                        <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -18,10 +16,8 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                    <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -29,10 +25,8 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                    <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -40,10 +34,8 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                    <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -51,11 +43,9 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
 
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                    <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -63,10 +53,8 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                    <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -74,10 +62,8 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                    <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -85,10 +71,8 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
                     <Col className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-                    <Link to="/productDetails">
                         <Card className="collection-image-box card">
                             <img src="images/product2.jpg"></img>
                             <Card.Body>
@@ -96,7 +80,6 @@ class Collection extends Component {
                                 <p className="product-price-on-card text-center">Price:3000TK</p>
                             </Card.Body>
                         </Card>
-                        </Link>
                     </Col>
 
                 </Row>

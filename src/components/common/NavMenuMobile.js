@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Col,Container,Row ,Button, Navbar} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 import MegaMenuMobile from '../home/MegaMenuMobile';
 
@@ -36,18 +35,14 @@ class NavMenuMobile extends Component {
     render() {
         return (
             <Fragment>
-                 <Container>
-                <h3 id="google_translate_element"></h3>
-                </Container>
-                
                 <Navbar fluid={true} className="fixed-top shadow-sm p-2 m-0 bg-white">
                      
                         <a onClick={this.MenuBarClickHandler} className=" mx-2 navbar-brand"><i className="fa fa-bars"></i></a>
                         <Button className="cart-btn"><i className="fa fa-shopping-cart"></i>4 items</Button>
-                        <Link to="/favourite" className="btn"><i className="fa h4 fa-heart"></i><sup><span className="badge text-white bg-danger">4</span></sup></Link>
-                       <Link to="/notification"  className="btn"><i className="fa h4 fa-bell"></i><sup><span className="badge text-white bg-danger">4</span></sup></Link>
+                        <a href="" className="btn"><i className="fa h4 fa-heart"></i><sup><span className="badge text-white bg-danger">4</span></sup></a>
+                        <a href="" className="btn"><i className="fa h4 fa-bell"></i><sup><span className="badge text-white bg-danger">4</span></sup></a>
                         <a href="" className="btn"><i className="fa h4 fa-search"></i></a>
-                        <div id="google_translate_element"></div>
+                      
                 </Navbar>
                 <div className={this.state.SideNav}>
                     <a href="" className="btn"><img className="nav-logo" src="images/slideLogo.jpg"></img></a>
@@ -57,7 +52,6 @@ class NavMenuMobile extends Component {
                 <div onClick={this.ContentOverLayClickHandler} className={this.state.ContentOverlay}>
 
                 </div>
-                
             </Fragment>
         );
     }

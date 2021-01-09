@@ -1,6 +1,5 @@
 import React, { Component,Fragment } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 class FeaturedProducts extends Component {
     render() {
@@ -11,7 +10,6 @@ class FeaturedProducts extends Component {
                     <p className="section-sub-title text-center">Some Of Our Exclusive Collection, You May Like</p>
                     <Row>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                            <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -19,10 +17,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -30,10 +26,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -41,10 +35,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -52,10 +44,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -63,10 +53,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -74,10 +62,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -85,10 +71,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -96,10 +80,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -107,10 +89,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -118,10 +98,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -129,10 +107,8 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
                         <Col className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
-                        <Link to="/productDetails">
                             <Card className="image-box card">
                                 <img src="images/product1.jpg"></img>
                                 <Card.Body>
@@ -140,7 +116,6 @@ class FeaturedProducts extends Component {
                                     <p className="product-price-on-card text-center">Price:3000TK</p>
                                 </Card.Body>
                             </Card>
-                            </Link>
                         </Col>
 
                     </Row>

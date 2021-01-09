@@ -16,7 +16,7 @@ class NavMenuDesktop extends Component {
                      <Row>
                          <Col lg={4} md={4} sm={12} xs={12} >
                             <a href="#" className="btn"><img className="nav-logo" src="images/slideLogo.jpg"></img></a> 
-                           <Link to="/cart" className="cart-btn"> <i className="fa fa-shopping-cart"></i>4 items</Link>
+                            <Button className="cart-btn"> <i className="fa fa-shopping-cart"></i>4 items</Button>  
                          </Col>
                          <Col lg={4} md={4} sm={12} xs={12} >
                              <div className="input-group w-100">
@@ -25,14 +25,10 @@ class NavMenuDesktop extends Component {
                              </div>
                          </Col>
                          <Col lg={4} md={4} sm={12} xs={12} >
-                         
-                             <Link to="/favourite" className="btn"><i className="fa h4 fa-heart"></i><sup><span className="badge bg-danger">4</span></sup></Link>
-                             <Link to="/notification" className="btn"><i className="fa h4 fa-bell"></i><sup><span className="badge bg-danger">4</span></sup></Link>
+                             <a className="btn"><i className="fa h4 fa-heart"></i><sup><span className="badge bg-danger">4</span></sup></a>
+                             <a className="btn"><i className="fa h4 fa-bell"></i><sup><span className="badge bg-danger">4</span></sup></a>
                              <a className="btn"><i className="fa h4 fa-mobile-alt"></i><sup><span className="badge bg-danger"></span></sup></a>
                              <Link to="/onboard" className="h4 btn">LOGIN</Link>
-                             <h3 id="google_translate_element"></h3>
-                             
-                    
                          </Col>
                      </Row>
                  </Container>

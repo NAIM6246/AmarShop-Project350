@@ -3,7 +3,6 @@ import {Container,Card} from 'react-bootstrap';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from 'react-router-dom';
 class NewArrival extends Component {
     
   constructor(props){
@@ -73,7 +72,6 @@ class NewArrival extends Component {
                  <p className="section-sub-title text-center">Some Of Our Exclusive Collection, You May Like</p>
                  <Slider ref={c=>(this.slider=c)} {...settings}>
                      <div>
-                        <Link to="/productDetails">
                          <Card className="newArrival-image-box card">
                                  <img src="images/product1.jpg"></img>
                                  <Card.Body>
@@ -81,10 +79,8 @@ class NewArrival extends Component {
                                      <p className="product-price-on-card text-center">Price:3000TK</p>
                                  </Card.Body>
                              </Card>
-                             </Link>
                      </div>
                      <div>
-                     <Link to="/productDetails">
                          <Card className="newArrival-image-box card">
                                  <img src="images/product1.jpg"></img>
                                  <Card.Body>
@@ -92,10 +88,8 @@ class NewArrival extends Component {
                                      <p className="product-price-on-card text-center">Price:3000TK</p>
                                  </Card.Body>
                              </Card>
-                             </Link>
                      </div>
                      <div>
-                     <Link to="/productDetails">
                          <Card className="newArrival-image-box card">
                                  <img src="images/product1.jpg"></img>
                                  <Card.Body>
@@ -103,10 +97,8 @@ class NewArrival extends Component {
                                      <p className="product-price-on-card text-center">Price:3000TK</p>
                                  </Card.Body>
                              </Card>
-                             </Link>
                      </div>
                      <div>
-                     <Link to="/productDetails">
                          <Card className="newArrival-image-box card">
                                  <img src="images/product1.jpg"></img>
                                  <Card.Body>
@@ -114,10 +106,8 @@ class NewArrival extends Component {
                                      <p className="product-price-on-card text-center">Price:3000TK</p>
                                  </Card.Body>
                              </Card>
-                             </Link>
                      </div>
                      <div>
-                     <Link to="/productDetails">
                          <Card className="newArrival-image-box card">
                                  <img src="images/product1.jpg"></img>
                                  <Card.Body>
@@ -125,7 +115,6 @@ class NewArrival extends Component {
                                      <p className="product-price-on-card text-center">Price:3000TK</p>
                                  </Card.Body>
                              </Card>
-                             </Link>
                      </div>
                      
                 </Slider> 

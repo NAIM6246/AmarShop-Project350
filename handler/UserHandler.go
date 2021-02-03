@@ -10,11 +10,14 @@ import (
 )
 
 type UserHandler struct {
+	userService *services.UserService
 }
 
 //NewUserHandler is the constructor of UserHandler struct
 func NewUserHandler() *UserHandler {
-	return &UserHandler{}
+	return &UserHandler{
+		userService: services.NewUserService(),
+	}
 }
 
 func (h *UserHandler) Handle(rout chi.Router) {

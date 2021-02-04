@@ -56,3 +56,14 @@ func (repo *UserRepository) Update(id uint, user2 *models.User) (*models.User, e
 	fmt.Println(user2)
 	return user2, nil
 }
+
+//delete user :
+func (repo *UserRepository) Delete(id uint) error {
+	var user models.User
+	err := repo.db.Where("id=?", id).First(&user).Error
+	if err != nil {
+		return err
+	}
+	e := repo.db.Delete(&user).Error
+	return e
+}

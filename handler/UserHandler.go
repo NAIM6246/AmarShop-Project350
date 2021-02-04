@@ -26,6 +26,7 @@ func (h *UserHandler) Handle(rout chi.Router) {
 	rout.Route("/{id}", func(router chi.Router) {
 		router.Get("/", h.getUserByID)
 		router.Put("/", h.updateUser)
+		router.Delete("/",h.deleteUser)
 	})
 	rout.Get("/get", h.getUser)
 	rout.Post("/post", h.createUser)
@@ -60,10 +61,13 @@ func (h *UserHandler) createUser(w http.ResponseWriter, r *http.Request) {
 	user := models.User{}
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
-		w.WriteHeader(400)
-		w.Header().Add("content-type", "application/json")
-		w.Write([]byte(`{"message" : "Bad request error"}`))
-		return
+		/*
+			w.WriteHeader(400)
+			w.Header().Add("content-type", "application/json")
+			w.Write([]byte(`{"message" : "Bad request error"}`))
+			return
+		*/
+		panic(err)
 	}
 	fmt.Println(user)
 	d, e := h.userService.CreateUser(&user)
@@ -87,7 +91,7 @@ func (h *UserHandler) updateUser(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("content-type", "application/json")
 		w.Write([]byte(`{"message" : "Bad request error"}`))
 	}
-	users, e := h.userService.UpdateUser(&user, id) 
+	users, e := h.userService.UpdateUser(&user, id)
 	if e != nil {
 		w.WriteHeader(400)
 		w.Header().Add("content-type", "application/json")
@@ -98,7 +102,15 @@ func (h *UserHandler) updateUser(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(users)
 }
 
+//Delete :
 func (h *UserHandler) deleteUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Content-Type", "application/json")
-	w.WriteHeader(204)
+	id := param.UInt(r, "id")
+	e := h.userService.DeleteUser(id)
+	if e != nil {
+		w.WriteHeader(400)
+		w.Header().Add("content-type", "application/json")
+		w.Write([]byte(`{"message" : "requested data is not fonud"}`))
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
 }

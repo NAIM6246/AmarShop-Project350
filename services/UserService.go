@@ -32,3 +32,8 @@ func (h *UserService) CreateUser(user *models.User) (*models.User, error) {
 func (h *UserService) UpdateUser(user *models.User, id uint) (*models.User, error) {
 	return h.userRepository.Update(id, user)
 }
+
+//delete User :
+func (h *UserService) DeleteUser(id uint) error {
+	return h.userRepository.Delete(id)
+}

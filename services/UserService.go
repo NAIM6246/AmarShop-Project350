@@ -23,6 +23,11 @@ func (h *UserService) GetUserByID(id uint) (*models.User, error) {
 	return h.userRepository.Get(id)
 }
 
+//Get all user :
+func (h *UserService) GetAll() ([]*models.User, error) {
+	return h.userRepository.GetAll()
+}
+
 //create user :
 func (h *UserService) CreateUser(user *models.User) (*models.User, error) {
 	return h.userRepository.Create(user)
@@ -37,3 +42,9 @@ func (h *UserService) UpdateUser(user *models.User, id uint) (*models.User, erro
 func (h *UserService) DeleteUser(id uint) error {
 	return h.userRepository.Delete(id)
 }
+
+/*
+func (h *UserService) LogIn(name string) (*models.User, error) {
+	return h.userRepository.Login(name)
+}
+*/

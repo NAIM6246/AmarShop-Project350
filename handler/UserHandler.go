@@ -26,18 +26,27 @@ func (h *UserHandler) Handle(rout chi.Router) {
 	rout.Route("/{id}", func(router chi.Router) {
 		router.Get("/", h.getUserByID)
 		router.Put("/", h.updateUser)
-		router.Delete("/",h.deleteUser)
+		router.Delete("/", h.deleteUser)
 	})
-	rout.Get("/get", h.getUser)
+
+	
+
+	rout.Get("/get", h.getAllUser)
 	rout.Post("/post", h.createUser)
 	rout.Put("/update", h.updateUser)
 	rout.Delete("/delete", h.deleteUser)
 }
 
-func (h *UserHandler) getUser(w http.ResponseWriter, r *http.Request) {
+func (h *UserHandler) getAllUser(w http.ResponseWriter, r *http.Request) {
+	d, e := h.userService.GetAll()
+	if e != nil {
+		w.WriteHeader(http.StatusNotFound)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(`{"message" : "requested data is not found"}`))
+	}
+	w.WriteHeader(http.StatusOK)
 	w.Header().Add("Content-Type", "application/json")
-	w.WriteHeader(200)
-	w.Write([]byte(`{"message" : "data fetch"}`))
+	_ = json.NewEncoder(w).Encode(d)
 }
 
 func (h *UserHandler) getUserByID(w http.ResponseWriter, r *http.Request) {
@@ -86,6 +95,8 @@ func (h *UserHandler) updateUser(w http.ResponseWriter, r *http.Request) {
 	id := param.UInt(r, "id")
 	user := models.User{}
 	err := json.NewDecoder(r.Body).Decode(&user)
+	fmt.Println(user)
+	fmt.Println("naimssda")
 	if err != nil {
 		w.WriteHeader(400)
 		w.Header().Add("content-type", "application/json")

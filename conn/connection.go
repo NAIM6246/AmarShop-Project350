@@ -46,6 +46,7 @@ func connectDB(config *config.DBConfig) error {
 	return nil
 }
 
+//not commited created Product & usercart table(5/2/21)
 func (db *DB) Migration() {
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.User{}, &models.Products{}, &models.UserCart{})
 }

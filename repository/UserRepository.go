@@ -42,6 +42,16 @@ func (repo *UserRepository) Get(id uint) (*models.User, error) {
 	return &user, nil
 }
 
+//Get all user :
+func (repo *UserRepository) GetAll() ([]*models.User, error) {
+	var users []*models.User
+	err := repo.db.Find(&users).Error
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
 //update user :
 func (repo *UserRepository) Update(id uint, user2 *models.User) (*models.User, error) {
 	var user models.User
@@ -67,3 +77,18 @@ func (repo *UserRepository) Delete(id uint) error {
 	e := repo.db.Delete(&user).Error
 	return e
 }
+
+/*
+//creatin login
+func (repo *UserRepository) Login(name string) (*models.User, error) {
+	var user models.User
+	//fmt.Println(name)
+	//fmt.Println("hi")
+	err := repo.db.Where("mobilenumber=?", name).First(&user).Error
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	return &user, nil
+}
+*/

@@ -104,7 +104,19 @@ class Registration extends Component {
         }
          event.preventDefault();
     }
+
+    //to hide & show pass
+    state = {
+        isPassShown : false
+    }
+
+    toggleShowPass =() =>{
+        const {isPassShown} = this.state;
+        this.setState({  isPassShown : !isPassShown  });
+    }
+
     render() {
+        const{ isPassShown } = this.state
         return (
             <Fragment>
                  <Container className="p-5">
@@ -129,7 +141,9 @@ class Registration extends Component {
 
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control onChange={this.passwordOnChange} type="text" placeholder="Your Password" />
+                                                <Form.Control onChange={this.passwordOnChange} type={(isPassShown) ? "text" : "password" } placeholder="Your Password" />
+                                                <i className={`fa ${ isPassShown ? "fa-eye-slash" : "fa-eye" } password-iconre`}
+                                                    onClick = {this.toggleShowPass} />
                                             </Form.Group>
 
                                             <Form.Group controlId="formBasicEmail">

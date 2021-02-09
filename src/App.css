@@ -31,3 +31,17 @@
     transform: rotate(360deg);
   }
 }
+
+.password-icon{
+  position: absolute;
+  bottom : 83px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.password-iconre{
+  position: absolute;
+  bottom : 170px;
+  right: 30px;
+  cursor: pointer;
+}

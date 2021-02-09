@@ -68,7 +68,19 @@ class UserOnboard extends Component {
      }
       event.preventDefault();
  }
+    state = {
+        isPassShown : false
+    }
+
+    toggleShowPass =() =>{
+        const {isPassShown} = this.state;
+        this.setState({  isPassShown : !isPassShown  });
+    }
+
     render() {
+
+        const{ isPassShown } = this.state
+
         return (
             <Fragment>
                 <Container className="p-5">
@@ -77,14 +89,16 @@ class UserOnboard extends Component {
                             <Card>
                                 <Card.Body>
                                     <Card.Title>Card Title</Card.Title>
-                                        <Form   id="myForm"  onSubmit={this.formOnSubmit} >
+                                        <Form   id="myForm" method="post" onSubmit={this.formOnSubmit} >
                                         <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>User Name</Form.Label>
                                                 <Form.Control onChange={this.nameOnChange} type="text" placeholder="Your Name" />
                                             </Form.Group>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control onChange={this.passwordOnChange} type="text" placeholder="Enter Your Password" />
+                                                <Form.Control onChange={this.passwordOnChange} type={(isPassShown) ? "text" : "password" } placeholder="Enter Your Password" />
+                                                <i className={`fa ${ isPassShown ? "fa-eye-slash" : "fa-eye" } password-icon`}
+                                                    onClick = {this.toggleShowPass} />
                                             </Form.Group>
                                             <Button type="submit"variant="primary">LogIn</Button>
                                            <Link to="/registration"><Button variant="primary" className="ml-5">SignUp</Button></Link>

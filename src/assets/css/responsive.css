@@ -1,0 +1,158 @@
+@media (max-width:374.98px){
+    .section-title{
+        font-size:13px;
+    }
+    .section-sub-title{
+        font-size:10px;
+    }
+    .product-name-on-card{
+        font-size: 12px;
+    }
+    .product-price-on-card{
+        font-size: 12px;
+    }
+    
+    .desktop{
+        display: none;
+        visibility:hidden;
+    }
+}
+
+@media (min-width:375.98px) and (max-width:574.98px){
+    .section-title{
+        font-size:15px;
+    }
+    .section-sub-title{
+        font-size:13px;
+    }
+    .product-name-on-card{
+        font-size: 13px;
+    }
+    .product-price-on-card{
+        font-size: 13px;
+    }
+    
+    .desktop{
+        display: none;
+        visibility:hidden;
+    }
+}
+
+@media (min-width:575px) and (max-width:767.98px){
+    .section-title{
+        font-size:16px;
+    }
+    .section-sub-title{
+        font-size:15px;
+    }
+    .product-name-on-card{
+        font-size: 18px;
+    }
+    .product-price-on-card{
+        font-size: 16px;
+    }
+    
+    .desktop{
+        display: none;
+        visibility:hidden;
+    }
+}
+
+@media (min-width:768px) and (max-width:967.98px){
+    .section-title{
+        font-size:18px;
+    }
+    .section-sub-title{
+        font-size:16px;
+    }
+    .product-name-on-card{
+        font-size: 18px;
+    }
+    .product-price-on-card{
+        font-size: 17px;
+    }
+    .mobile{
+        display: none;
+        visibility:hidden;
+    }
+   
+}
+
+@media (min-width:968px) and (max-width:1167.98px){
+    .section-title{
+        font-size:18px;
+    }
+    .section-sub-title{
+        font-size:17px;
+    }
+    .product-name-on-card{
+        font-size: 18px;
+    }
+    .product-price-on-card{
+        font-size: 16px;
+    }
+    .mobile{
+        display: none;
+        visibility:hidden;
+    }
+    
+}
+
+@media (min-width:1168px) and (max-width:1342.98px){
+    .section-title{
+        font-size:20px;
+    }
+    .section-sub-title{
+        font-size:18px;
+    }
+    .product-name-on-card{
+        font-size: 18px;
+    }
+    .product-price-on-card{
+        font-size: 16px;
+    }
+    .mobile{
+        display: none;
+        visibility:hidden;
+    }
+   
+}
+
+@media (min-width:1343px) and (max-width:1689.98px){
+    .section-title{
+        font-size:22px;
+    }
+    .section-sub-title{
+        font-size:20px;
+    }
+    .product-name-on-card{
+        font-size: 18px;
+    }
+    .product-price-on-card{
+        font-size: 16px;
+    }
+    .mobile{
+        display: none;
+        visibility:hidden;
+    }
+   
+}
+@media (min-width:1690px){
+    .section-title{
+        font-size:24px;
+    }
+    .section-sub-title{
+        font-size:22px;
+    }
+    .product-name-on-card{
+        font-size: 20px;
+    }
+    .product-price-on-card{
+        font-size: 17px;
+    }
+    .mobile{
+        display: none;
+        visibility:hidden;
+    }
+  
+}

@@ -13,10 +13,15 @@ import (
 func main() {
 	port := ":8080"
 	router := chi.NewRouter()
+	//rout for user
 	userHandler := handler.NewUserHandler()
-	loginHandler := handler.NewLoginHandler()
 	router.Route("/users", userHandler.Handle)
+	//rout for login
+	loginHandler := handler.NewLoginHandler()
 	router.Route("/login", loginHandler.Handler)
+	//rout for product
+	productHandler := handler.NewProductHandler()
+	router.Route("/product", productHandler.PHandler)
 	fmt.Println("Creating a server on port ", port)
 
 	config := config.NewDBConfig()

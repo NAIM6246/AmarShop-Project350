@@ -11,7 +11,7 @@ type User struct {
 
 type Login struct {
 	MOBILENUMBER string `gorm:"foreign_key" json:"mobile"`
-	PASSWORD     string `gorm:"type=text;not null"json:"pass"`
+	PASSWORD     string `gorm:"type=text;not null"json:"password"`
 }
 
 type UserLogIn struct {

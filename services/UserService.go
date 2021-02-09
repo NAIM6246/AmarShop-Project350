@@ -29,7 +29,7 @@ func (h *UserService) GetAll() ([]*models.User, error) {
 }
 
 //create user :
-func (h *UserService) CreateUser(user *models.User) (*models.User, error) {
+func (h *UserService) CreateUser(user *models.User) (*models.User, error, error) {
 	return h.userRepository.Create(user)
 }
 

@@ -52,6 +52,7 @@ func (h *LoginHandler) logIn2(w http.ResponseWriter, r *http.Request) {
 */
 
 func (h *LoginHandler) logIn(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	//user := param.String(r, "name")
 	//fmt.Println(user)
 	u2 := models.Login{}
@@ -63,17 +64,7 @@ func (h *LoginHandler) logIn(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, er := json.Marshal(&u2)
-
-	//fmt.Println(&u2)
-	//fmt.Println(user)
-	if er != nil {
-		w.WriteHeader(400)
-		w.Header().Add("content-type", "application/json")
-		w.Write([]byte(`{"message" : "Invalid User"}`))
-		return
-	}
-	//fmt.Println(&u2)
+	fmt.Println(&u2)
 	d, e := h.loginService.LogIn(u2.MOBILENUMBER)
 	if e != nil {
 		w.WriteHeader(200)

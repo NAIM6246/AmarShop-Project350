@@ -21,15 +21,36 @@ func NewUserRepository(db *conn.DB) *UserRepository {
 }
 
 //Creating user :
-func (repo *UserRepository) Create(u *models.User) (*models.User, error) {
-	err := repo.db.Create(&u).Error
-	if err != nil {
-		return nil, err
+func (repo *UserRepository) Create(u *models.User) (*models.User, error, error) {
+	var use models.User
+	//fmt.Println(u.MOBILENUMBER)
+	//fmt.Println(u.EMAIL)
+	//fmt.Println("reposi")
+	er := repo.db.Where("mobilenumber=?", u.MOBILENUMBER).First(&use).Error
+	er2 := repo.db.Where("email=?", u.EMAIL).First(&use).Error
+	//fmt.Println(er)
+	//fmt.Println(er2)
+	if er != nil && er2 != nil {
+		err := repo.db.Create(&u).Error
+		if err != nil {
+			if er != nil {
+				return nil, er, err
+			} else {
+				return nil, er2, err
+			}
+		}
+		fmt.Println(u)
+		fmt.Println("repos")
+		if er != nil {
+			return u, er, nil
+		} else {
+			return u, er2, nil
+		}
+		//return u, nil, nil
 	}
-	fmt.Println(u)
-	fmt.Println("repos")
 
-	return u, nil
+	return nil, nil, nil
+
 }
 
 //Get user by id :

@@ -75,6 +75,7 @@ func (h *LoginHandler) logIn(w http.ResponseWriter, r *http.Request) {
 	if d.PASSWORD != u2.PASSWORD {
 		fmt.Println(d.PASSWORD)
 		fmt.Println("wrong password")
+		fmt.Fprintf(w, "Wrong Password")
 		fmt.Println(u2.PASSWORD)
 		return
 	}

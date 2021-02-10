@@ -48,5 +48,6 @@ func connectDB(config *config.DBConfig) error {
 
 //not commited created Product & usercart table(5/2/21)
 func (db *DB) Migration() {
+	fmt.Println("calling")
 	db.AutoMigrate(&models.User{}, &models.Products{}, &models.UserCart{}, &models.Category{}, &models.Orders{}, &models.SiteInfo{}, &models.SubCategory{})
 }

@@ -22,14 +22,14 @@ class AboutPage extends Component {
                 <NavMenuMobile></NavMenuMobile>
              </div>
 
-            <div className="mt-5">
+            <div>
               
               <About></About>
                
              </div>
                
 
-             <div className="desktop" className="mt-5">
+             <div className="desktop">
                 <FooterDesktop></FooterDesktop>
              </div>
              

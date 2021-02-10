@@ -36,7 +36,6 @@ class Contact extends Component {
        var name =this.state.name;
        var mobile =this.state.mobile;
        var message=this.state.message;
-       let contactForm=document.getElementById("myForm");
        
        if(name.length==0){
            toast.error("Name required");
@@ -62,7 +61,6 @@ class Contact extends Component {
            axios.post(AppUrl.getContactDetails,myFormData).then(function(response){
                if(response.status==200 && response.data==1){
                    toast.success("Success")
-                   contactForm.reset()
                }
                else{
                    toast.error("Oops!Please Check Your Internet Connection")
@@ -84,7 +82,7 @@ class Contact extends Component {
                             <Card>
                                 <Card.Body>
                                     <Card.Title>Card Title</Card.Title>
-                                        <Form id="myForm" onSubmit={this.formOnSubmit} >
+                                        <Form  onSubmit={this.formOnSubmit} >
                                             <h4>Contact With Us</h4>
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Name</Form.Label>

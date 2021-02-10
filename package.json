@@ -14,7 +14,6 @@
     "react": "^16.8.6",
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.8.6",
-    "react-html-parser": "^2.0.2",
     "react-leaflet": "^2.7.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",

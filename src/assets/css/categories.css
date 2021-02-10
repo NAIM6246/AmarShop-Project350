@@ -6,10 +6,10 @@
     position: center;
 }
 .categories-image-box img{
-    max-width: 80%;
+    max-width: 100%;
     transition: all 0.3s;
     display: block;
-    width: 50%;
+    width: 65%;
     height: auto;
     position: center;
 }

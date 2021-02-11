@@ -15,21 +15,17 @@ type ProductRepository struct {
 	//	catgoryRepository *CategoryRepository
 }
 
+//
 func NewProductRepository(db *conn.DB) *ProductRepository {
-	//con := conn.ConnectDB(config.NewDBConfig())
 	return &ProductRepository{
 		db:  db.Table(models.ProductsTable()),
 		db2: db.Table(models.SubCategoryTable()),
 		db3: db.Table(models.CategoryTable()),
-		//catgoryRepository: *NewCategorRepository(con),
 	}
 }
 
 func (repo *ProductRepository) Create(p *models.Products) (*models.Products, error) {
-	err := repo.db.Create(&p).Error
-	if err != nil {
-		return nil, err
-	}
+
 	//converting to category 3:40 10/2
 	var sub models.SubCategory
 	subCat := models.SubCategory{
@@ -57,6 +53,14 @@ func (repo *ProductRepository) Create(p *models.Products) (*models.Products, err
 	fmt.Println("Product repo")
 	fmt.Println(subCat)
 	fmt.Println("Prod repo")
+
+	//creating Product
+	//p.CategoryID = cat.ID
+	//fmt.Printf("cat id "+ string(p.CategoryID))
+	err := repo.db.Create(&p).Error
+	if err != nil {
+		return nil, err
+	}
 	return p, nil
 }
 

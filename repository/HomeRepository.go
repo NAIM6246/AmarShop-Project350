@@ -3,6 +3,7 @@ package repository
 import (
 	"AmarShop/conn"
 	"AmarShop/models"
+	"fmt"
 
 	"github.com/jinzhu/gorm"
 )
@@ -10,12 +11,14 @@ import (
 type HomeRepository struct {
 	db  *gorm.DB
 	db2 *gorm.DB
+	db3 *gorm.DB
 }
 
 func NewHomeRepository(db *conn.DB) *HomeRepository {
 	return &HomeRepository{
 		db:  db.Table(models.CategoryTable()),
 		db2: db.Table(models.ProductsTable()),
+		db3: db.Table(models.SubCategoryTable()),
 	}
 }
 
@@ -25,6 +28,16 @@ func (repo *HomeRepository) GetAll() ([]*models.Category, error) {
 	err := repo.db.Find(&category).Error
 	if err != nil {
 		return nil, err
+	}
+	var sub []models.SubCategory
+	for _, s := range category {
+		//fmt.Println(i, s.CategoryName)
+		er := repo.db3.Where("category=?", s.CategoryName).Find(&sub).Error
+		if er != nil {
+			s.SubCat = nil
+		}
+		s.SubCat = sub
+		fmt.Println(sub)
 	}
 	return category, nil
 }

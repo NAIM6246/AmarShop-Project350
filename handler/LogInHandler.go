@@ -52,7 +52,7 @@ func (h *LoginHandler) logIn2(w http.ResponseWriter, r *http.Request) {
 */
 
 func (h *LoginHandler) logIn(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 	//user := param.String(r, "name")
 	//fmt.Println(user)
 	u2 := models.Login{}
@@ -67,7 +67,7 @@ func (h *LoginHandler) logIn(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(&u2)
 	d, e := h.loginService.LogIn(u2.MOBILENUMBER)
 	if e != nil {
-		w.WriteHeader(200)
+		w.WriteHeader(http.StatusNotFound)
 		w.Header().Add("content-type", "application/json")
 		w.Write([]byte(`{"message" : "Invalid User"}`))
 		return
@@ -83,4 +83,8 @@ func (h *LoginHandler) logIn(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(200)
 	_ = json.NewEncoder(w).Encode(d)
+}
+
+func EnableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }

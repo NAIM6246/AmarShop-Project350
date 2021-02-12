@@ -51,6 +51,15 @@ func (repo *HomeRepository) GetAllSubCatProducts(cat string, sub string) ([]*mod
 	return subCatProducts, nil
 }
 
+func (repo *HomeRepository) GetAllCatProducts(cat string) ([]*models.Products, error) {
+	var catProducts []*models.Products
+	err := repo.db2.Where("product_cat=?", cat).Find(&catProducts).Error
+	if err != nil {
+		return nil, err
+	}
+	return catProducts, nil
+}
+
 func (repo *HomeRepository) GetFeatured() ([]*models.Products, error) {
 	var featuredProducts []*models.Products
 	err := repo.db2.Where("product_type LIKE ?", "Featured").Find(&featuredProducts).Error
@@ -63,6 +72,15 @@ func (repo *HomeRepository) GetFeatured() ([]*models.Products, error) {
 func (repo *HomeRepository) GetNew() ([]*models.Products, error) {
 	var featuredProducts []*models.Products
 	err := repo.db2.Where("product_type LIKE ?", "%New Arrival%").Find(&featuredProducts).Error
+	if err != nil {
+		return nil, err
+	}
+	return featuredProducts, nil
+}
+
+func (repo *HomeRepository) GetType(typ string) ([]*models.Products, error) {
+	var featuredProducts []*models.Products
+	err := repo.db2.Where("product_type LIKE ?", typ).Find(&featuredProducts).Error
 	if err != nil {
 		return nil, err
 	}

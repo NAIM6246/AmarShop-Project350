@@ -1,12 +1,14 @@
 package models
 
+//
 type SiteInfo struct {
-	AboutUs       string
-	HowToPurchase string
-	Privacy       string
-	Refund        string
+	AboutUs       string `json:"aboutUs"`
+	HowToPurchase string `json:"purchase"`
+	Privacy       string `json:"privacy"`
+	Refund        string `json:"refund"`
 }
 
+//
 func SiteInfoTable() string {
-	return "SiteInfo"
+	return "Site_Infos"
 }

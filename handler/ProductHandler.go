@@ -24,6 +24,7 @@ func NewProductHandler() *ProductHandler {
 func (h *ProductHandler) PHandler(rout chi.Router) {
 	rout.Route("/{category}", func(router chi.Router) {
 		router.Get("/", h.getSameProduct)
+		router.Get("/", h.getProductByID)
 	})
 	rout.Get("/", h.getProduct)
 	rout.Post("/", h.createProduct)
@@ -82,4 +83,21 @@ func (h *ProductHandler) getSameProduct(w http.ResponseWriter, r *http.Request) 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Add("Content-Type", "application/json")
 	_ = json.NewEncoder(w).Encode(d)
+}
+
+func (h *ProductHandler) getProductByID(w http.ResponseWriter, r *http.Request) {
+	id := param.UInt(r, "id")
+	productService := services.NewProductService()
+	d, e := productService.GetProductByID(id)
+	if e != nil {
+		w.WriteHeader(200)
+		w.Header().Add("Content-type", "application/json")
+		w.Write([]byte(`{"name" : "Not found"}`))
+		return
+	}
+	w.WriteHeader(200)
+	w.Header().Add("Content-type", "application/json")
+	w.Write([]byte("Name : " + d.ProductName))
+	fmt.Println(d)
+
 }

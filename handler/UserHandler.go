@@ -66,7 +66,7 @@ func (h *UserHandler) getUserByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *UserHandler) createUser(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 	user := models.User{}
 	err := json.NewDecoder(r.Body).Decode(&user)
 	fmt.Println(user)
@@ -134,7 +134,8 @@ func (h *UserHandler) deleteUser(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusNoContent)
 }
-
+/*
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
+*/

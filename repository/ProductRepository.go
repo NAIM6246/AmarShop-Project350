@@ -69,6 +69,7 @@ func (repo *ProductRepository) Get(id uint) (*models.Products, error) {
 	var prod models.Products
 	err := repo.db.Where("id=?", id).First(&prod).Error
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	fmt.Println(prod)

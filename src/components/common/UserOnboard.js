@@ -57,7 +57,9 @@ class UserOnboard extends Component {
         //parsing json object
         axios.post(AppUrl.getLoginDetails,json).then(function(response){
             if(response.status==200){
+                sessionStorage.setItem('userName',1)
                 toast.success("Success")
+                window.location.replace('/')
                 contactForm.reset()
             }
             else{

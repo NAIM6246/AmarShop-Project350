@@ -22,7 +22,7 @@ class ProductListCategoryPage extends Component {
        
         /*fetching productList item by clicking any category */
         window.scroll(0,0)
-        axios.get(AppUrl.getProductListByCategoryLevel1(this.state.category)).then(response=>{
+        axios.get(AppUrl.getProductListByRemark(this.state.category)).then(response=>{
             if(response.status==200){
                 let myData=(response.data);
                 this.setState({Data:myData});

@@ -55,7 +55,7 @@ class NavMenuDesktop extends Component {
                          <Row>
                              <Col lg={6} md={6} sm={12} xs={12} >
                              <div className="input-group w-100">
-                             <a href="#" className="btn"><img className="nav-logo" src="images/category1.jpg"></img></a> 
+                             <a href="/" className="btn"><img className="nav-logo" src="images/category1.jpg"></img></a> 
                                 <Button className="cart-btn"> <i className="fa fa-shopping-cart"></i>items</Button>  
                             </div>
                              </Col>

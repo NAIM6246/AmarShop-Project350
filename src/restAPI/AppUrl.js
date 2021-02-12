@@ -8,7 +8,7 @@
 export default AppUrl;
 */
 class AppUrl{
-    static URL="http://127.0.0.1:8080/api/"
+    static URL="http://127.0.0.1:8080/"
    /* static getVisitorDetails=this.URL+"getVisitorDetails"
     static getContactDetails=this.URL+"getContactDetails"
     static getSiteInfoDetails=this.URL+"getSiteInfoDetails"

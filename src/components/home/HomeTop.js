@@ -20,6 +20,9 @@ class HomeTop extends Component {
                 if(response.status==200){
                    
                     let Data=(response.data);
+                    console.log(Data)
+                    console.log("home")
+                    
                     this.setState({categoryData:Data});
                 }
             }).catch(error=>{

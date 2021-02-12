@@ -4,10 +4,15 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
+import AppUrl from '../../restAPI/AppUrl';
+import axios from 'axios';
 class NewArrival extends Component {
     
   constructor(props){
      super(props);
+     this.state={
+      Data:[]
+     }
     this.next=this.next.bind(this);
     this.previous=this.previous.bind(this);
 
@@ -19,10 +24,34 @@ class NewArrival extends Component {
   previous(){
     this.slider.slickPrev();
   }
- 
+   
+  componentDidMount() {
 
+    /*fetch new arrival as like as feature product and collection product*/
+    axios.get(AppUrl.getProductListByRemark("New")).then(response=>{
+        this.setState({Data:response.data})
+    }).catch(error=>{
+
+    })
+}
    
     render() {
+
+      const myList=this.state.Data;
+
+      const view=myList.map((myList,i)=>{
+          return     <div key={i.toString()}>
+          <Link to={"/productDetails/"+myList.productCode}>
+              <Card className="newArrival-image-box card">
+                      <img src="images/product1.jpg"></img>
+                      <Card.Body>
+                          <p className="product-name-on-card text-center">{myList.title}</p>
+                          <p className="product-price-on-card text-center">Price:{myList.price}TK</p>
+                      </Card.Body>
+                  </Card>
+                  </Link>
+          </div>
+      })
 
         var settings = {
             dots: false,
@@ -72,61 +101,7 @@ class NewArrival extends Component {
                  </h5>
                  <p className="section-sub-title text-center">Some Of Our Exclusive Collection, You May Like</p>
                  <Slider ref={c=>(this.slider=c)} {...settings}>
-                     <div>
-                        <Link to="/productDetails">
-                         <Card className="newArrival-image-box card">
-                                 <img src="images/product1.jpg"></img>
-                                 <Card.Body>
-                                     <p className="product-name-on-card text-center">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</p>
-                                     <p className="product-price-on-card text-center">Price:3000TK</p>
-                                 </Card.Body>
-                             </Card>
-                             </Link>
-                     </div>
-                     <div>
-                     <Link to="/productDetails">
-                         <Card className="newArrival-image-box card">
-                                 <img src="images/product1.jpg"></img>
-                                 <Card.Body>
-                                     <p className="product-name-on-card text-center">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</p>
-                                     <p className="product-price-on-card text-center">Price:3000TK</p>
-                                 </Card.Body>
-                             </Card>
-                             </Link>
-                     </div>
-                     <div>
-                     <Link to="/productDetails">
-                         <Card className="newArrival-image-box card">
-                                 <img src="images/product1.jpg"></img>
-                                 <Card.Body>
-                                     <p className="product-name-on-card text-center">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</p>
-                                     <p className="product-price-on-card text-center">Price:3000TK</p>
-                                 </Card.Body>
-                             </Card>
-                             </Link>
-                     </div>
-                     <div>
-                     <Link to="/productDetails">
-                         <Card className="newArrival-image-box card">
-                                 <img src="images/product1.jpg"></img>
-                                 <Card.Body>
-                                     <p className="product-name-on-card text-center">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</p>
-                                     <p className="product-price-on-card text-center">Price:3000TK</p>
-                                 </Card.Body>
-                             </Card>
-                             </Link>
-                     </div>
-                     <div>
-                     <Link to="/productDetails">
-                         <Card className="newArrival-image-box card">
-                                 <img src="images/product1.jpg"></img>
-                                 <Card.Body>
-                                     <p className="product-name-on-card text-center">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</p>
-                                     <p className="product-price-on-card text-center">Price:3000TK</p>
-                                 </Card.Body>
-                             </Card>
-                             </Link>
-                     </div>
+                    {view}
                      
                 </Slider> 
                 </Container>

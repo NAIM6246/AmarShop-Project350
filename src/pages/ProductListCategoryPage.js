@@ -1,14 +1,35 @@
+import axios from 'axios';
 import React, { Component,Fragment } from 'react';
 import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 import NavMenuDesktop from '../components/common/NavMenuDesktop';
 import NavMenuMobile from '../components/common/NavMenuMobile';
-import Registration from '../components/common/Registration';
-class RegistrationPage extends Component {
+import ListOfCategory from '../components/productDetails/ListOfCategory';
+import AppUrl from '../restAPI/AppUrl';
 
+class ProductListCategoryPage extends Component {
+
+    constructor({match}) {
+        super();
+        this.state={
+            category:match.params.category,
+            Data:[]
+        }
+        
+    }
     
     componentDidMount() {
+       
+        /*fetching productList item by clicking any category */
         window.scroll(0,0)
+        axios.get(AppUrl.getProductListByCategoryLevel1(this.state.category)).then(response=>{
+            if(response.status==200){
+                let myData=(response.data);
+                this.setState({Data:myData});
+            }
+        }).catch(error=>{
+           
+       });
     }
     
     render() {
@@ -22,7 +43,7 @@ class RegistrationPage extends Component {
                 <NavMenuMobile></NavMenuMobile>
              </div>
                <div>
-                   <Registration></Registration>
+                  <ListOfCategory Data={this.state.Data} category={this.state.category}></ListOfCategory>
                </div>
                
 
@@ -39,4 +60,4 @@ class RegistrationPage extends Component {
     }
 }
 
-export default RegistrationPage;
+export default ProductListCategoryPage;

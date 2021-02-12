@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from 'react';
 import { Container,Row,Col,Card,Button,Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 import AppUrl from '../../restAPI/AppUrl';
 import Validation from '../../validation/Validation';
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,7 +14,8 @@ class UserOnboard extends Component {
         super(props);
         this.state={
             mobile:"",
-            password:""
+            password:"",
+            redirectStatus:false
         }
     }
     /*eikhane name ke dhora hoise */

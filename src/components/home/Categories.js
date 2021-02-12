@@ -31,7 +31,7 @@ class Categories extends Component {
     
             const view=MyList.map((MyList,i)=>{
                 return <Col  key={i.toString()}className="p-0"   key={1} xl={2} lg={2} md={2} sm={3} xs={4}>
-                <Link to="/productDetails">   
+                <Link to={"/productListCategory/"+MyList.$categoryLevel1Name}>   
                     <Card className="categories-image-box categories-card">
                         <img src="images/category1.jpg"></img>
                         <Card.Body>

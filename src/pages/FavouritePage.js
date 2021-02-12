@@ -5,6 +5,9 @@ import NavMenuDesktop from '../components/common/NavMenuDesktop';
 import NavMenuMobile from '../components/common/NavMenuMobile';
 import Favourite from '../components/favourite/Favourite';
 class FavouritePage extends Component {
+
+
+   
     render() {
         return (
             <Fragment>

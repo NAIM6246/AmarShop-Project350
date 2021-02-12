@@ -12,6 +12,10 @@ import RefundPage from '../pages/RefundPage';
 import TeamPage from '../pages/TeamPage';
 import UserOnboardPage from '../pages/UserOnboardPage';
 import RegistrationPage from '../pages/RegistrationPage';
+import ProductListCategoryPage from '../pages/ProductListCategoryPage';
+import ProductListSubCategoryPage from '../pages/ProductListSubCategoryPage';
+import SearchPage from '../pages/SearchPage';
+import AddressPage from '../pages/AddressPage';
 
 
 class AppRoute extends Component {
@@ -27,12 +31,16 @@ class AppRoute extends Component {
                    <Route exact path="/policy" component={PolicyPage}></Route>
                    <Route exact path="/about" component={AboutPage}></Route>
                    <Route exact path="/team" component={TeamPage}></Route>
-                   <Route exact path="/productDetails" component={ProductDetailsPage}></Route>
+                   <Route exact path="/productDetails/:productCode" component={ProductDetailsPage}></Route>
                    <Route exact path="/notification" component={NotificationPage}></Route>
                    <Route exact path="/favourite" component={FavouritePage}></Route>
                    <Route exact path="/registration" component={RegistrationPage}></Route>
-                
-                
+                   
+                   <Route exact path="/productListCategory/:category" component={ProductListCategoryPage}></Route>
+                   <Route exact path="/productListSubCategory/:category/:Subcategory" component={ProductListSubCategoryPage}></Route>
+                   <Route exact path="/searchProductList/:searchKey" component={SearchPage}></Route>
+                   <Route exact path="/address" component={AddressPage}></Route>
+
                </Switch> 
             </Fragment>
         );

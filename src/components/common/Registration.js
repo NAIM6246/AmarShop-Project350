@@ -5,6 +5,9 @@ import Validation from '../../validation/Validation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { Redirect } from 'react-router';
+
+
 class Registration extends Component {
 
 
@@ -16,7 +19,8 @@ class Registration extends Component {
             mobilenumber:"",
             address:"",
             email:"",
-            pass:""
+            pass:"",
+            redirect:false
     
         }
     }

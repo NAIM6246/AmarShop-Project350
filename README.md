@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-looda sdasdasd
+loo
 
 In the project directory, you can run:
 

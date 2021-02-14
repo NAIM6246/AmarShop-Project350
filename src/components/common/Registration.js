@@ -94,7 +94,8 @@ class Registration extends Component {
                if(response.status==200 && response.data==1){
                 sessionStorage.setItem('userName',1)
                 
-                toast.success("Success").then(window.location.replace('/'))
+                toast.success("Success")
+                window.location.replace('/')
 
                    contactForm.reset();
                }

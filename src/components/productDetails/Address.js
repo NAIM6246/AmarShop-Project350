@@ -1,10 +1,26 @@
 import React, { Component,Fragment } from 'react';
 import { Container,Row,Col,Card,Button,Form } from 'react-bootstrap';
 import axios from 'axios';
+import ProductDetails from './ProductDetails';
+import { ToastContainer, toast } from 'react-toastify';
+
 class Address extends Component {
+
+    constructor(props) {
+        super(props);
+       
+    }
+
+   
+   
+    
+   
+    
+
     render() {
         return (
           <Fragment>
+          
           <Container className="p-5">
              <Row>
                  <Col lg={4} md={4} sm={8} xs={12}>
@@ -38,6 +54,7 @@ class Address extends Component {
                      </Card>
                  </Col>
              </Row>
+             <ToastContainer></ToastContainer>
          </Container>
      </Fragment>
         );

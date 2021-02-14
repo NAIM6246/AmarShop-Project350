@@ -54,10 +54,9 @@ class UserOnboard extends Component {
         */}
         axios.post(AppUrl.getLoginDetails,myFormData).then(function(response){
             if(response.status==200 && response.data==1){
-                sessionStorage.setItem('userName',1)
+                sessionStorage.setItem('userName',name)
                 toast.success("Success");
-                window.location.replace('/')
-              
+                window.history.back()
                 contactForm.reset()
             }
             else{

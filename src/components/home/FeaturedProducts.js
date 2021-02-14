@@ -1,7 +1,7 @@
 import React, { Component,Fragment } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import AppUrl from '../../restAPI/AppUrl';
+    import AppUrl from '../../restAPI/AppUrl';
 import axios from 'axios';
 class FeaturedProducts extends Component {
 

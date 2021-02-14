@@ -6,8 +6,23 @@ import NavMenuMobile from '../components/common/NavMenuMobile';
 import Address from '../components/productDetails/Address';
 class AddressPage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state={
+            id:"",
+            quantity:"",
+            size:""
+        }
+    }
+    
+
     componentDidMount(){
         window.scroll(0,0)
+        const {size}=this.props.location.state;
+        const{quantity}=this.props.location.state;
+        const{id}=this.props.location.state;
+        this.setState({id:id,size:size,quantity:quantity})
+        
     }
     render() {
         return (
@@ -21,8 +36,7 @@ class AddressPage extends Component {
                 <NavMenuMobile></NavMenuMobile>
              </div>
                <div>
-                
-               <Address></Address>
+                <Address id={this.state.id} quantity={this.state.quantity} size={this.state.size}></Address>
                </div>
                
 

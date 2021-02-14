@@ -16,7 +16,7 @@ class FeaturedProducts extends Component {
     componentDidMount() {
 
         /*fetching data, same type data will be fetch for new arrival and collection component */
-        axios.get(AppUrl.getProductListByRemark("Feature")).then(response=>{
+        axios.get(AppUrl.getProductListByRemark("Featured")).then(response=>{
             this.setState({Data:response.data})
 
 
@@ -35,7 +35,7 @@ class FeaturedProducts extends Component {
                 <Card className="image-box card">
                     <img src="images/product1.jpg"></img>
                     <Card.Body>
-                        <p className="product-name-on-card text-center">{myList.title}</p>
+                        <p className="product-name-on-card text-center">{myList.productName}</p>
                         <p className="product-price-on-card text-center">Price:{myList.price}TK</p>
                     </Card.Body>
                 </Card>

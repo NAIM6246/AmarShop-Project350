@@ -16,12 +16,11 @@ class Registration extends Component {
         super(props);
         this.state={
             name:"",
-            mobile:"",
+            mobilenumber:"",
             address:"",
             email:"",
-            password:"",
+            pass:"",
             redirect:false
-          
     
         }
     }
@@ -32,7 +31,7 @@ class Registration extends Component {
 
     mobileOnChange=(event)=>{
         let clientMobile=event.target.value;
-        this.setState({mobile:clientMobile})
+        this.setState({mobilenumber:clientMobile})
     }
     emailOnChange=(event)=>{
         let clientEmail=event.target.value;
@@ -40,7 +39,7 @@ class Registration extends Component {
     }
     passwordOnChange=(event)=>{
         let clientPassword=event.target.value;
-        this.setState({password:clientPassword})
+        this.setState({pass:clientPassword})
     }
     addressOnChange=(event)=>{
     let clientAddress=event.target.value;
@@ -49,66 +48,81 @@ class Registration extends Component {
 
    formOnSubmit=(event)=>{
        var name =this.state.name;
-       var mobile =this.state.mobile;
+       var mobilenumber =this.state.mobilenumber;
        var address=this.state.address;
        var email=this.state.email;
-       var password=this.state.password;
+       var pass=this.state.pass;
        let contactForm=document.getElementById("myForm");
        
        if(name.length==0){
            toast.error("Name required");
        }
-       else if(mobile.length==0){
+       else if(mobilenumber.length==0){
         toast.error("Mobile number required");
        }
        else if(!(Validation.nameRegx).test(name)){
            toast.error("Invalid name");
        }
-       else if(!(Validation.mobileRegx).test(mobile)){
+       else if(!(Validation.mobileRegx).test(mobilenumber)){
            toast.error("Invalid mobile number");
        }
        else if(!(Validation.emailRegx).test(email)){
         toast.error("Invalid Email");
        }
-       else if(password.length<8){
+       else if(pass.length<8){
            toast.error("Minimum 8 digit is required!");
        }
        else if(address.length==0){
         toast.error("Address required");
     }
        else{
-       
            let myFormData=new FormData();
            myFormData.append("name",name)
-           myFormData.append("mobile",mobile)
+           myFormData.append("mobilenumber",mobilenumber)
            myFormData.append("email",email)
-           myFormData.append("password",password)
+           myFormData.append("pass",pass)
            myFormData.append("address",address)
-           {/*let object = {};
-           myFormData.forEach(function(value, key){
-                object[key] = value;
-           });
-           const json = JSON.stringify(object);
-        */}
-           axios.post(AppUrl.getRegistrationDetails,myFormData).then(function(response){
-               if(response.status==200 && response.data==1){
-                sessionStorage.setItem('userName',1)
-                
-                toast.success("Success")
-                window.location.replace('/')
+        //convrting form to json
 
-                   contactForm.reset();
+           let object = {};
+           myFormData.forEach(function(value,key){
+               object[key] = value;
+           });
+           const json =  JSON.stringify(object)
+
+           //
+           axios.post(AppUrl.getRegistrationDetails,json).then(function(response){
+            //toast.
+              // toast.success("Entered")
+               if(response.status==201 /*&& response.data == 1*/){
+                   sessionStorage.setItem('userName',mobilenumber)
+                   toast.success("Success")
+                   window.location.replace('/')
+                   contactForm.reset()
                }
                else{
-                  toast.error("Oops!Please Check Your Internet Connection")
+                   toast.error("Oops!Please Check Your Internet Connection")
                }
            }).catch(function(error){
-
+               console.log(error)
+               toast.error("error")
            })
-       }
+        }
          event.preventDefault();
     }
+
+    //to hide & show pass
+    state = {
+        isPassShown : false
+    }
+
+    toggleShowPass =() =>{
+        const {isPassShown} = this.state;
+        this.setState({  isPassShown : !isPassShown  });
+    }
+
     render() {
+        const{ isPassShown } = this.state
         return (
             <Fragment>
                  <Container className="p-5">
@@ -117,7 +131,7 @@ class Registration extends Component {
                             <Card>
                                 <Card.Body>
                                     <Card.Title>Card Title</Card.Title>
-                                        <Form  id="myForm" onSubmit={this.formOnSubmit}>
+                                        <Form  id="myForm" method="post" onSubmit={this.formOnSubmit} >
                                         <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Name</Form.Label>
                                                 <Form.Control onChange={this.nameOnChange} type="text" placeholder="Your Name" />
@@ -133,7 +147,9 @@ class Registration extends Component {
 
                                             <Form.Group controlId="formBasicEmail">
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control onChange={this.passwordOnChange} type="text" placeholder="Your Password" />
+                                                <Form.Control onChange={this.passwordOnChange} type={(isPassShown) ? "text" : "password" } placeholder="Your Password" />
+                                                <i className={`fa ${ isPassShown ? "fa-eye-slash" : "fa-eye" } password-iconre`}
+                                                    onClick = {this.toggleShowPass} />
                                             </Form.Group>
 
                                             <Form.Group controlId="formBasicEmail">

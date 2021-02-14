@@ -31,11 +31,11 @@ class Categories extends Component {
     
             const view=MyList.map((MyList,i)=>{
                 return <Col  key={i.toString()}className="p-0"   key={1} xl={2} lg={2} md={2} sm={3} xs={4}>
-                <Link to={"/productListCategory/"+MyList.$categoryLevel1Name}>   
+                <Link to={"/productListCategory/"+MyList.catName}>   
                     <Card className="categories-image-box categories-card">
                         <img src="images/category1.jpg"></img>
                         <Card.Body>
-                           <p className="product-name-on-card text-center">{MyList.$categoryLevel1Name}</p>
+                           <p className="product-name-on-card text-center">{MyList.catName}</p>
                         </Card.Body>
                     </Card>
                 </Link> 

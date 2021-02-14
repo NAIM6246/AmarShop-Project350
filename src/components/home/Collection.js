@@ -29,7 +29,7 @@ class Collection extends Component {
             <Card className="collection-image-box card">
                 <img src="images/product2.jpg"></img>
                 <Card.Body>
-                    <p className="product-name-on-card text-center">{myList.title}</p>
+                    <p className="product-name-on-card text-center">{myList.productName}</p>
                     <p className="product-price-on-card text-center">Price:{myList.price}TK</p>
                 </Card.Body>
             </Card>

@@ -24,16 +24,17 @@ class MegaMenu extends Component {
 
         render() {
                 
-            const MyList=this.props.Data;
-    
+            const MyList=(this.props.Data);
+            console.log(MyList)
+            //if(MyList){
             const view=MyList.map((MyList,i)=>{
                 return <div key={i.toString()}>
-                    <button onClick={this.menuItemOnClick} className="accordion"> <img className="accordionMenuIcon" src=""/>{MyList.$categoryLevel1Name}</button>
+                    <button onClick={this.menuItemOnClick} className="accordion"> <img className="accordionMenuIcon" src=""/>{MyList.catName}</button>
                     <div className="panel">
                         <ul>
                         {
-                               (MyList.$categoryLevel2Name).map((secondCategory,i)=>{
-                                    return <li><Link to={"/productListSubCategory/"+secondCategory.categoryLevel1Name+"/"+secondCategory.categoryLevel2Name} className="accordionItem">{secondCategory.categoryLevel2Name}</Link></li>
+                               (MyList.SubCat).map((secondCategory,i)=>{
+                                    return <li key={i,toString()}><Link to={"/productListSubCategory/"+secondCategory.catName+"/"+secondCategory.subcatName} className="accordionItem">{secondCategory.subcatName}</Link></li>
                                })
                            }
                         </ul>
@@ -50,6 +51,7 @@ class MegaMenu extends Component {
                 </div>
             </div>
         );
+         //   }
     }
 }
 

@@ -17,9 +17,9 @@ class ListOfCategory extends Component {
             return    <Col key={i.toString()}className="p-1"key={1} xl={2} lg={2} md={3} sm={4} xs={6}>
             <Link to={"/productDetails/"+myList.productCode}>
                 <Card className="image-box card">
-                <img src="images/product2.jpg"></img>
+                <img src="images/product1.jpg"></img>
                     <Card.Body>
-                        <p className="product-name-on-card text-center">{myList.title}</p>
+                        <p className="product-name-on-card text-center">{myList.productCat}</p>
                         <p className="product-price-on-card text-center">Price:{myList.price}TK</p>
                     </Card.Body>
                 </Card>

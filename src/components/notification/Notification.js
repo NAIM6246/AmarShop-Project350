@@ -25,7 +25,7 @@ class Notification extends Component {
         let message=event.target.getAttribute('modeldescription');
         let title=event.target.getAttribute('modelTitle');
         let date=event.target.getAttribute('modelDate');
-        alert(message)
+        alert(title)
         this.setState({message:message,title:title,date:date})
     }
     componentDidMount() {
@@ -50,7 +50,7 @@ class Notification extends Component {
             return    <Col key={i.toString()}className="p-1" md={4} lg={4} sm={6} xs={12}>
                           <Card  modelDate={myList.date} modelTitle={myList.title} modeldescription={myList.message}onClick={this.handleShow} className="notification-card">
                             <Card.Body>
-                                 <h6>{myList.title}</h6>
+                                 <h6 id="demoTitle">{myList.title}</h6>
                                 <p className="py-1  px-0 text-primary m-0"><i className="fa  fa-bell"></i>{myList.date}</p>
                             </Card.Body>
                          </Card>

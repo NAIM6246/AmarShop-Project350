@@ -95,7 +95,7 @@ class Registration extends Component {
             //toast.
               // toast.success("Entered")
                if(response.status==201 /*&& response.data == 1*/){
-                   sessionStorage.setItem('userName',1)
+                   sessionStorage.setItem('userName',mobilenumber)
                    toast.success("Success")
                    window.location.replace('/')
                    contactForm.reset()

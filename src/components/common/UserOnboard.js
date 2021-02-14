@@ -47,6 +47,7 @@ class UserOnboard extends Component {
         let myFormData=new FormData();
         myFormData.append("mobile",mobile)
         myFormData.append("password",password)
+
         //converting form data to json
         let object = {};
         myFormData.forEach(function(value,key){
@@ -57,9 +58,9 @@ class UserOnboard extends Component {
         //parsing json object
         axios.post(AppUrl.getLoginDetails,json).then(function(response){
             if(response.status==200){
-                sessionStorage.setItem('userName',1)
+                sessionStorage.setItem('userName',mobile)
                 toast.success("Success")
-                window.location.replace('/')
+                window.history.back()
                 contactForm.reset()
             }
             else{

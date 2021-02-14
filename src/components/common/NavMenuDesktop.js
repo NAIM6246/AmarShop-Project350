@@ -23,7 +23,7 @@ class NavMenuDesktop extends Component {
     searchOnClick=()=>{
         if(this.state.searchKey.length>=2){
             this.setState({redirect:true})
-            
+            return <Redirect to={"/searchProductList/"+this.state.searchKey}/>
         }
     }
 
@@ -46,6 +46,7 @@ class NavMenuDesktop extends Component {
     render() {
 
         if(sessionStorage.getItem('userName')===null){
+            var userName=sessionStorage.getItem('userName');
             return (
                 <Fragment>
                      
@@ -56,7 +57,12 @@ class NavMenuDesktop extends Component {
                              <Col lg={6} md={6} sm={12} xs={12} >
                              <div className="input-group w-100">
                              <a href="/" className="btn"><img className="nav-logo" src="images/category1.jpg"></img></a> 
-                                <Button className="cart-btn"> <i className="fa fa-shopping-cart"></i>items</Button>  
+                             <Link to={{
+                                           pathname:'/onboard',
+                                           state:{
+                                                id:null
+                                           }
+                                       }}><Button className="cart-btn"> <i className="fa fa-shopping-cart"></i>items</Button> </Link>    
                             </div>
                              </Col>
                              <Col lg={3} md={3} sm={12} xs={12} >
@@ -69,7 +75,12 @@ class NavMenuDesktop extends Component {
                                 {/* <Link to="/favourite" className="btn"><i className="fa h4 fa-heart"></i><sup><span className="badge bg-danger">4</span></sup></Link>*/}
                                  <Link to="/notification" className="btn"><i className="fa h4 fa-bell"></i><sup><span className="badge bg-danger">4</span></sup></Link>
                                 {/* <a className="btn"><i className="fa h4 fa-mobile-alt"></i><sup><span className="badge bg-danger"></span></sup></a>*/}
-                                 <Link to="/onboard" className="h4 btn">LOGIN</Link>
+                                <Link to={{
+                                           pathname:'/onboard',
+                                           state:{
+                                                id:"null"
+                                           }
+                                       }}className="h4 btn">LOGIN</Link>
                                  
                              </Col>
                              
@@ -83,6 +94,8 @@ class NavMenuDesktop extends Component {
             );
         }
         else{
+            var userName=sessionStorage.getItem('userName');
+
         return (
             <Fragment>
                  
@@ -93,7 +106,14 @@ class NavMenuDesktop extends Component {
                          <Col lg={6} md={6} sm={12} xs={12} >
                          <div className="input-group w-100">
                          <a href="#" className="btn"><img className="nav-logo" src="images/category1.jpg"></img></a> 
-                            <Button className="cart-btn"> <i className="fa fa-shopping-cart"></i>items</Button>  
+                         <Link to={{
+                                           pathname:'/cartList/'+userName,
+                                           state:{
+                                                id:"null",
+                                                
+
+                                           }
+                                       }}><Button className="cart-btn"> <i className="fa fa-shopping-cart"></i>items</Button> </Link>    
                         </div>
                          </Col>
                          <Col lg={3} md={3} sm={12} xs={12} >

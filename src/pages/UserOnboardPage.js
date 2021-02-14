@@ -7,8 +7,18 @@ import UserOnboard from '../components/common/UserOnboard';
 
 class UserOnboardPage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state={
+            id:"null"
+        }
+    }
+    
+
     componentDidMount() {
         window.scroll(0,0)
+        const{id}=this.props.location.state;
+        this.setState({id:id})
     }
     
     render() {
@@ -23,7 +33,7 @@ class UserOnboardPage extends Component {
                 <NavMenuMobile></NavMenuMobile>
              </div>
                <div>
-               <UserOnboard></UserOnboard>
+               <UserOnboard id={this.state.id}></UserOnboard>
                </div>
                
 

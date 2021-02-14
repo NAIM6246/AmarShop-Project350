@@ -32,6 +32,7 @@ func (repo *UserRepository) Create(u *models.User) (*models.User, error, error) 
 	//fmt.Println(er2)
 	if er != nil && er2 != nil {
 		err := repo.db.Create(&u).Error
+		fmt.Println(err)
 		if err != nil {
 			if er != nil {
 				return nil, er, err
@@ -48,7 +49,7 @@ func (repo *UserRepository) Create(u *models.User) (*models.User, error, error) 
 		}
 		//return u, nil, nil
 	}
-
+	fmt.Println("asdfasdfasdfasdf")
 	return nil, nil, nil
 
 }

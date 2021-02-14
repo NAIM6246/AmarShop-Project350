@@ -1,13 +1,13 @@
 package models
 
 type UserCart struct {
-	CARTID      uint `gorm:"primary_Key" json:"cartid"`
-	PRODUCTID   uint `gorm:"type="`
-	PRODUCTLIST []Products
-	CUSTOMERID  uint
-	CUSTOMER    User
+	ID      uint `gorm:"primary_Key"`
+	Product uint `json:"pid"`
+	//List     []Products
+	Customer uint `json:"cid"`
+	//CUSTOMER    User
 }
 
 func UserCartTable() string {
-	return "UserCart"
+	return "user_carts"
 }

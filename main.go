@@ -22,8 +22,14 @@ func main() {
 	//rout for product
 	productHandler := handler.NewProductHandler()
 	router.Route("/product", productHandler.PHandler)
+	//rout for home
 	homeHandler := handler.NewHomeHandler()
 	router.Route("/home", homeHandler.HomeHandler)
+	//rout for orders
+	orderHandler := handler.NewOrderHandler()
+	router.Route("/order", orderHandler.OrderHandle)
+	cartHandler := handler.NewCartHandler()
+	router.Route("/cart", cartHandler.CartHandle)
 	fmt.Println("Creating a server on port ", port)
 
 	config := config.NewDBConfig()

@@ -9,8 +9,9 @@ type Products struct {
 	ProductName    string `gorm:"type=varchar(100);not null" json:"productName"`
 	ProductDetails string `json:"details"`
 	ProductPrice   uint   `json:"price"`
-	ProductColor   string `json:"color"`
+	ProductAmmount uint   `json:"ammount"`
 	ProductType    string `json:"type"`
+	ImageSrc       string
 }
 
 type ProductCategory struct {

@@ -1,7 +1,7 @@
 package models
 
 type Products struct {
-	ID uint `gorm:"primary_key"`
+	ID uint `gorm:"primary_key" json:"id"`
 	//ProductCat     Category `gorm:"foreign_key:CategoryID"`
 	ProductCat    string `json:"productCat"`
 	ProductSubCat string `json:"productSubCat"`
@@ -11,6 +11,7 @@ type Products struct {
 	ProductPrice   uint   `json:"price"`
 	ProductAmmount uint   `json:"ammount"`
 	ProductType    string `json:"type"`
+	ProductSize    string `json:"size"`
 	ImageSrc       string
 }
 

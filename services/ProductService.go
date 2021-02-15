@@ -25,7 +25,7 @@ func (h *ProductService) CreateProduct(prod *models.Products) (*models.Products,
 }
 
 //
-func (h *ProductService) GetProductByID(id uint) (*models.Products, error) {
+func (h *ProductService) GetProductByID(id uint) ([]*models.Products, error) {
 	return h.productRepository.Get(id)
 }
 

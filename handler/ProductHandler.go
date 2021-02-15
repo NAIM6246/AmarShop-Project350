@@ -25,18 +25,19 @@ func NewProductHandler() *ProductHandler {
 
 func (h *ProductHandler) PHandler(rout chi.Router) {
 	rout.Route("/{category}", func(router chi.Router) {
+		router.Get("/product", h.getProductByID)
 		router.Get("/", h.getSameProduct)
-		router.Get("/", h.getProductByID)
 	})
 	rout.Get("/", h.getProduct)
 	rout.Post("/", h.createProduct)
 }
 
 func (h *ProductHandler) createProduct(w http.ResponseWriter, r *http.Request) {
-	src := h.upload_file(w, r)
-	fmt.Println(src)
+	EnableCors(&w)
+	//src := h.upload_file(w, r)
+	//fmt.Println(src)
 	prod := models.Products{}
-	prod.ImageSrc = src
+	//prod.ImageSrc = src
 	err := json.NewDecoder(r.Body).Decode(&prod)
 	if err != nil {
 		/*
@@ -64,6 +65,7 @@ func (h *ProductHandler) createProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *ProductHandler) getProduct(w http.ResponseWriter, r *http.Request) {
+	EnableCors(&w)
 	d, e := h.productService.GetAll()
 	if e != nil {
 		w.WriteHeader(http.StatusNotFound)
@@ -78,6 +80,7 @@ func (h *ProductHandler) getProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *ProductHandler) getSameProduct(w http.ResponseWriter, r *http.Request) {
+	EnableCors(&w)
 	cat := param.String(r, "category")
 	d, e := h.productService.GetSameProduct(cat)
 	if e != nil {
@@ -92,7 +95,9 @@ func (h *ProductHandler) getSameProduct(w http.ResponseWriter, r *http.Request) 
 }
 
 func (h *ProductHandler) getProductByID(w http.ResponseWriter, r *http.Request) {
-	id := param.UInt(r, "id")
+	EnableCors(&w)
+	id := param.UInt(r, "category")
+	//fmt.Println(id)
 	productService := services.NewProductService()
 	d, e := productService.GetProductByID(id)
 	if e != nil {
@@ -103,13 +108,12 @@ func (h *ProductHandler) getProductByID(w http.ResponseWriter, r *http.Request) 
 	}
 	w.WriteHeader(200)
 	w.Header().Add("Content-type", "application/json")
-	w.Write([]byte("Name : " + d.ProductName))
-	fmt.Println(d)
+	_ = json.NewEncoder(w).Encode(d)
 
 }
 
 func (h *ProductHandler) upload_file(w http.ResponseWriter, r *http.Request) (src string) {
-
+	EnableCors(&w)
 	file, handler, err1 := r.FormFile("image")
 	if err1 != nil {
 		fmt.Println(err1)

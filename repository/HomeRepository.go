@@ -12,6 +12,7 @@ type HomeRepository struct {
 	db  *gorm.DB
 	db2 *gorm.DB
 	db3 *gorm.DB
+	db4 *gorm.DB
 }
 
 func NewHomeRepository(db *conn.DB) *HomeRepository {
@@ -19,6 +20,7 @@ func NewHomeRepository(db *conn.DB) *HomeRepository {
 		db:  db.Table(models.CategoryTable()),
 		db2: db.Table(models.ProductsTable()),
 		db3: db.Table(models.SubCategoryTable()),
+		db4: db.Table(models.SiteInfoTable()),
 	}
 }
 
@@ -78,11 +80,62 @@ func (repo *HomeRepository) GetNew() ([]*models.Products, error) {
 	return featuredProducts, nil
 }
 
+func (repo *HomeRepository) Search(str string) ([]*models.Products, error) {
+	var searchProducts []*models.Products
+	fmt.Println("herer")
+	err := repo.db2.Where("product_type LIKE ? OR product_name LIKE ? OR product_cat LIKE ? OR product_sub_cat LIKE ?", str, str, str, str).Find(&searchProducts).Error
+	if err != nil {
+		return nil, err
+	}
+	return searchProducts, nil
+}
+
 func (repo *HomeRepository) GetType(typ string) ([]*models.Products, error) {
 	var featuredProducts []*models.Products
+	fmt.Println("herer")
 	err := repo.db2.Where("product_type LIKE ?", typ).Find(&featuredProducts).Error
 	if err != nil {
 		return nil, err
 	}
 	return featuredProducts, nil
+}
+
+//
+func (repo *HomeRepository) About() (string, error) {
+	var info models.SiteInfo
+	err := repo.db4.Find(&info).Error
+	if err != nil {
+		return "about", err
+	}
+	return info.AboutUs, nil
+}
+
+//
+func (repo *HomeRepository) Purchase() (string, error) {
+	var info models.SiteInfo
+	err := repo.db4.Find(&info).Error
+	if err != nil {
+		return "purchase", err
+	}
+	return info.HowToPurchase, nil
+}
+
+//
+func (repo *HomeRepository) Privacy() (string, error) {
+	var info models.SiteInfo
+	err := repo.db4.Find(&info).Error
+	if err != nil {
+		return "privacy", err
+	}
+	return info.Privacy, nil
+}
+
+//
+func (repo *HomeRepository) Refund() (string, error) {
+	var info models.SiteInfo
+	err := repo.db4.Find(&info).Error
+	if err != nil {
+		return "refund", err
+	}
+	return info.Refund, nil
 }

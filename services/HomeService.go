@@ -44,3 +44,23 @@ func (h *HomeService) GetNew() ([]*models.Products, error) {
 func (h *HomeService) GetType(typ string) ([]*models.Products, error) {
 	return h.homeRepository.GetType(typ)
 }
+
+func (h *HomeService) Search(str string) ([]*models.Products, error) {
+	return h.homeRepository.Search(str)
+}
+
+func (h *HomeService) About() (string, error) {
+	return h.homeRepository.About()
+}
+
+func (h *HomeService) Purchase() (string, error) {
+	return h.homeRepository.Purchase()
+}
+
+func (h *HomeService) Privacy() (string, error) {
+	return h.homeRepository.Privacy()
+}
+
+func (h *HomeService) Refund() (string, error) {
+	return h.homeRepository.Privacy()
+}

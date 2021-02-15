@@ -23,14 +23,6 @@ func NewLoginHandler() *LoginHandler {
 //handle
 func (h *LoginHandler) Handler(rout chi.Router) {
 	rout.Post("/", h.logIn)
-	//creating login
-	/*
-		rout.Route("/{name}", func(router chi.Router) {
-			router.Get("/", h.logIn)
-			router.Post("/", h.logIn2)
-		})
-	*/
-	//end of login
 }
 
 /*
@@ -85,6 +77,7 @@ func (h *LoginHandler) logIn(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(d)
 }
 
+//
 func EnableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }

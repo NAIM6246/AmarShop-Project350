@@ -28,6 +28,7 @@ func main() {
 	//rout for orders
 	orderHandler := handler.NewOrderHandler()
 	router.Route("/order", orderHandler.OrderHandle)
+	//cart Handler
 	cartHandler := handler.NewCartHandler()
 	router.Route("/cart", cartHandler.CartHandle)
 	fmt.Println("Creating a server on port ", port)

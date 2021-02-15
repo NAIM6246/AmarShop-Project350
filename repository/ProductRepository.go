@@ -65,8 +65,8 @@ func (repo *ProductRepository) Create(p *models.Products) (*models.Products, err
 }
 
 //geting single product
-func (repo *ProductRepository) Get(id uint) (*models.Products, error) {
-	var prod models.Products
+func (repo *ProductRepository) Get(id uint) ([]*models.Products, error) {
+	var prod []*models.Products
 	err := repo.db.Where("id=?", id).First(&prod).Error
 	if err != nil {
 		fmt.Println(err)
@@ -74,7 +74,7 @@ func (repo *ProductRepository) Get(id uint) (*models.Products, error) {
 	}
 	fmt.Println(prod)
 	fmt.Println("Product repo")
-	return &prod, nil
+	return prod, nil
 }
 
 //

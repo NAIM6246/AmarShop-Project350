@@ -13,6 +13,7 @@ import (
 func main() {
 	port := ":8080"
 	router := chi.NewRouter()
+	//r2 := mux.NewRouter()
 	//rout for user
 	userHandler := handler.NewUserHandler()
 	router.Route("/users", userHandler.Handle)
@@ -22,6 +23,12 @@ func main() {
 	//rout for product
 	productHandler := handler.NewProductHandler()
 	router.Route("/product", productHandler.PHandler)
+	/*
+		up := handler.NewUpload()
+		router.Route("/up", up.UHandler)
+	*/
+	//r2.HandleFunc("/api/upload", handler.UploadFile).Methods("POST")
+
 	//rout for home
 	homeHandler := handler.NewHomeHandler()
 	router.Route("/home", homeHandler.HomeHandler)

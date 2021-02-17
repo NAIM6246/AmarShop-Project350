@@ -81,11 +81,12 @@ func (repo *UserRepository) Update(id uint, user2 *models.User) (*models.User, e
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println(user)
 	e := repo.db.Model(&user).Updates(user2).Error
 	if e != nil {
 		return nil, err
 	}
-	fmt.Println(user2)
+	fmt.Println(user)
 	return user2, nil
 }
 

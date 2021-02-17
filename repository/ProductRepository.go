@@ -72,7 +72,7 @@ func (repo *ProductRepository) Get(id uint) ([]*models.Products, error) {
 		fmt.Println(err)
 		return nil, err
 	}
-	fmt.Println(prod)
+	fmt.Println(&prod)
 	fmt.Println("Product repo")
 	return prod, nil
 }

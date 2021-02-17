@@ -6,9 +6,7 @@ import (
 	"AmarShop/services"
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
-	"os"
 
 	"github.com/go-chi/chi"
 )
@@ -34,12 +32,14 @@ func (h *ProductHandler) PHandler(rout chi.Router) {
 
 func (h *ProductHandler) createProduct(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
+	fmt.Println("enterdS")
 	//src := h.upload_file(w, r)
 	//fmt.Println(src)
 	prod := models.Products{}
 	//prod.ImageSrc = src
 	err := json.NewDecoder(r.Body).Decode(&prod)
 	if err != nil {
+		fmt.Println("asdfasdfasdfsadfsadfasd")
 		/*
 			w.WriteHeader(400)
 			w.Header().Add("content-type", "application/json")
@@ -101,7 +101,7 @@ func (h *ProductHandler) getProductByID(w http.ResponseWriter, r *http.Request) 
 	productService := services.NewProductService()
 	d, e := productService.GetProductByID(id)
 	if e != nil {
-		w.WriteHeader(200)
+		w.WriteHeader(http.StatusNotFound)
 		w.Header().Add("Content-type", "application/json")
 		w.Write([]byte(`{"name" : "Not found"}`))
 		return
@@ -110,24 +110,4 @@ func (h *ProductHandler) getProductByID(w http.ResponseWriter, r *http.Request) 
 	w.Header().Add("Content-type", "application/json")
 	_ = json.NewEncoder(w).Encode(d)
 
-}
-
-func (h *ProductHandler) upload_file(w http.ResponseWriter, r *http.Request) (src string) {
-	EnableCors(&w)
-	file, handler, err1 := r.FormFile("image")
-	if err1 != nil {
-		fmt.Println(err1)
-	}
-	defer file.Close()
-	fmt.Println(handler.Filename)
-	sr := fmt.Sprintf("./uploads/" + handler.Filename)
-	dst, e := os.Create(sr)
-	if e != nil {
-		fmt.Println(e)
-	}
-	fmt.Println(dst)
-	defer dst.Close()
-	io.Copy(dst, file)
-	return sr
-	//return "location"
 }

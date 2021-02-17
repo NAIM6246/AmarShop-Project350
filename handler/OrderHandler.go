@@ -33,9 +33,13 @@ func (h *OrderHandler) createOrder(w http.ResponseWriter, r *http.Request) {
 	}*/
 	//fmt.Println(orderIn.ORDERADDRESS)
 	err := json.NewDecoder(r.Body).Decode(&orderIn)
-	//fmt.Println(orderIn.Pi)
+	fmt.Println(orderIn.TOTALPRICE)
+	fmt.Println(&orderIn)
+	fmt.Printf("var1 = %T\n", orderIn.NUMBEROFPRODUCTS)
 	if err != nil {
+		fmt.Println("here")
 		panic(err)
+		//return
 	}
 	e := h.orderService.CreateOrder(&orderIn)
 	if e != nil {

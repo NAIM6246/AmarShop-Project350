@@ -93,6 +93,7 @@ func (repo *HomeRepository) Search(str string) ([]*models.Products, error) {
 func (repo *HomeRepository) GetType(typ string) ([]*models.Products, error) {
 	var featuredProducts []*models.Products
 	fmt.Println("herer")
+	fmt.Println(typ)
 	err := repo.db2.Where("product_type LIKE ?", typ).Find(&featuredProducts).Error
 	if err != nil {
 		return nil, err

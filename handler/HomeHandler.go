@@ -106,7 +106,7 @@ func (h *HomeHandler) getFeatured(w http.ResponseWriter, r *http.Request) {
 //
 func (h *HomeHandler) getType(w http.ResponseWriter, r *http.Request) {
 	EnableCors(&w)
-	typ := param.String(r, "type")
+	typ := param.String(r, "category")
 	fmt.Println("naim check ")
 	fmt.Println(typ)
 	d, e := h.homeService.GetType(typ)

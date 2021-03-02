@@ -25,6 +25,7 @@ func (h *ProductHandler) PHandler(rout chi.Router) {
 	rout.Route("/{category}", func(router chi.Router) {
 		router.Get("/product", h.getProductByID)
 		router.Get("/", h.getSameProduct)
+		router.Delete("/", h.deleteProduct)
 	})
 	rout.Get("/", h.getProduct)
 	rout.Post("/", h.createProduct)
@@ -89,6 +90,7 @@ func (h *ProductHandler) getSameProduct(w http.ResponseWriter, r *http.Request) 
 		w.Write([]byte(`{"message" : "requested data is not found"}`))
 		return
 	}
+	fmt.Println(d)
 	w.WriteHeader(http.StatusOK)
 	w.Header().Add("Content-Type", "application/json")
 	_ = json.NewEncoder(w).Encode(d)
@@ -110,4 +112,17 @@ func (h *ProductHandler) getProductByID(w http.ResponseWriter, r *http.Request) 
 	w.Header().Add("Content-type", "application/json")
 	_ = json.NewEncoder(w).Encode(d)
 
+}
+
+//Delete :
+func (h *ProductHandler) deleteProduct(w http.ResponseWriter, r *http.Request) {
+	id := param.UInt(r, "category")
+	e := h.productService.DeleteProduct(id)
+	if e != nil {
+		w.WriteHeader(400)
+		w.Header().Add("content-type", "application/json")
+		w.Write([]byte(`{"message" : "requested data is not fonud"}`))
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
 }

@@ -96,3 +96,14 @@ func (repo *ProductRepository) GetSame(cat string) ([]*models.Products, error) {
 	}
 	return prod, nil
 }
+
+//
+func (repo *ProductRepository) Delete(id uint) error {
+	var prod *models.Products
+	err := repo.db.Where("id=?", id).First(&prod).Error
+	if err != nil {
+		return err
+	}
+	e := repo.db.Delete(&prod).Error
+	return e
+}

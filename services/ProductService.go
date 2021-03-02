@@ -38,3 +38,8 @@ func (h *ProductService) GetAll() ([]*models.Products, error) {
 func (h *ProductService) GetSameProduct(cat string) ([]*models.Products, error) {
 	return h.productRepository.GetSame(cat)
 }
+
+//
+func (h *ProductService) DeleteProduct(id uint) error {
+	return h.productRepository.Delete(id)
+}

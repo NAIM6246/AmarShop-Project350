@@ -39,6 +39,9 @@ func main() {
 	cartHandler := handler.NewCartHandler()
 	router.Route("/cart", cartHandler.CartHandle)
 	fmt.Println("Creating a server on port ", port)
+	//upload handler
+	uploadHandler := handler.NewFileHandler()
+	router.Route("/upload", uploadHandler.UploadHandler)
 
 	config := config.NewDBConfig()
 	connection := conn.ConnectDB(config)

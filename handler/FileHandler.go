@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"AmarShop/services"
 	"fmt"
 	"io"
 	"net/http"
@@ -11,11 +12,14 @@ import (
 
 //
 type FileHandler struct {
+	fileService *services.FileService
 }
 
 //
 func NewFileHandler() *FileHandler {
-	return &FileHandler{}
+	return &FileHandler{
+		fileService: services.NewFileService(),
+	}
 }
 
 //
@@ -39,6 +43,14 @@ func (h *FileHandler) uploadFile(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	//creating file service
+	e := h.fileService.Upload(file, handler, pid)
+	if e != nil {
+		fmt.Println("upload failed")
+		panic(e)
+	}
+	//fmt.Println(d)
+	//
 	defer file.Close()
 	fmt.Println(handler.Filename)
 

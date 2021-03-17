@@ -34,6 +34,16 @@ func (repo *UserRepository) Check(u *models.User) error {
 	return er
 }
 
+//
+func (repo *UserRepository) FindByNumber(number string) (*uint, error) {
+	var user models.User
+	er := repo.db.Where("mobilenumber=?", number).First(&user).Error
+	if er == nil {
+		return &user.ID, nil
+	}
+	return nil, er
+}
+
 //Create
 func (repo *UserRepository) Create(user *models.User) (*models.User, error) {
 	err := repo.db.Create(&user).Error

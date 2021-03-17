@@ -66,6 +66,11 @@ func (h *ProductService) GetProductByID(id uint) ([]*models.Products, error) {
 }
 
 //
+func (h *ProductService) GetProductById(id uint) (*models.Products, error) {
+	return h.productRepository.GetByID(id)
+}
+
+//
 func (h *ProductService) GetAll() ([]*models.Products, error) {
 	return h.productRepository.GetAll()
 }
@@ -83,4 +88,9 @@ func (h *ProductService) DeleteProduct(id uint) error {
 	}
 	err := h.productRepository.Delete(prod[0])
 	return err
+}
+
+//
+func (h *ProductService) UpdateProduct(p1 models.Products, p2 *models.Products) error {
+	return h.productRepository.Update(p1, p2)
 }

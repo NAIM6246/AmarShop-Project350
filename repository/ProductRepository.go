@@ -128,6 +128,19 @@ func (repo *ProductRepository) Get(id uint) ([]*models.Products, error) {
 }
 
 //
+func (repo *ProductRepository) GetByID(id uint) (*models.Products, error) {
+	var prod models.Products
+	err := repo.db.Where("id=?", id).First(&prod).Error
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	fmt.Println(&prod)
+	fmt.Println("Product repo")
+	return &prod, nil
+}
+
+//
 func (repo *ProductRepository) GetAll() ([]*models.Products, error) {
 	var prod []*models.Products
 	err := repo.db.Find(&prod).Error
@@ -158,4 +171,13 @@ func (repo *ProductRepository) Delete(prod *models.Products) error {
 	*/
 	e := repo.db.Delete(&prod).Error
 	return e
+}
+
+//
+func (repo *ProductRepository) Update(p1 models.Products, p2 *models.Products) error {
+	err := repo.db.Model(&p2).Updates(p1).Error
+	if err != nil {
+		return err
+	}
+	return nil
 }

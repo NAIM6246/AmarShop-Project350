@@ -32,6 +32,11 @@ func (h *UserService) GetAll() ([]*models.User, error) {
 	return h.userRepository.GetAll()
 }
 
+//
+func (h *UserService) GetUserByinfo(info string) (*uint, error) {
+	return h.userRepository.FindByNumber(info)
+}
+
 //create user :
 func (h *UserService) CreateUser(user *models.User) (*models.User, error, error) {
 	er := h.userRepository.Check(user)

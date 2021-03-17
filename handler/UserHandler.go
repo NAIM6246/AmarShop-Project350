@@ -60,6 +60,7 @@ func (h *UserHandler) getUserByID(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(200)
 	w.Header().Add("Content-type", "application/json")
+	_ = json.NewEncoder(w).Encode(d)
 	w.Write([]byte("Name : " + d.NAME))
 	fmt.Println(d)
 
@@ -82,13 +83,13 @@ func (h *UserHandler) createUser(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(user)
 	d, e1, e2 := h.userService.CreateUser(&user)
-	if e2 != nil {
+	if e1 != nil {
 		w.WriteHeader(400)
 		w.Header().Add("content-type", "application/json")
 		w.Write([]byte(`{"message" : "Bad request error."}`))
 		return
 	}
-	if e1 == nil {
+	if e2 == nil {
 		w.WriteHeader(400)
 		w.Header().Add("content-type", "application/json")
 		w.Write([]byte(`{"message" : "User already exists."}`))
@@ -134,6 +135,7 @@ func (h *UserHandler) deleteUser(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusNoContent)
 }
+
 /*
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")

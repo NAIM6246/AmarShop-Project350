@@ -24,19 +24,59 @@ func NewProductRepository(db *conn.DB) *ProductRepository {
 	}
 }
 
+//
+func (repo *ProductRepository) CreateSubCat(sub *models.SubCategory) (*models.SubCategory, error) {
+	e := repo.db2.Create(&sub).Error
+	if e != nil {
+		return nil, e
+	}
+	return sub, nil
+}
+
+//
+func (repo *ProductRepository) CheckSub(subcat *models.SubCategory) error {
+	var sub models.SubCategory
+	err := repo.db2.Where("sub_cat_name=?", subcat.SubCatName).First(&sub).Error
+	err2 := repo.db2.Where("category=?", subcat.Category).First(&sub).Error
+
+	var e error
+	if err != nil {
+		e = err
+	} else if err2 != nil {
+		e = err2
+	} else {
+		e = nil
+	}
+
+	return e
+}
+
+//
+func (repo *ProductRepository) CheckCat(cat *models.Category) error {
+	var cat2 models.Category
+	return repo.db3.Where("category_name=?", cat.CategoryName).First(&cat2).Error
+}
+
+//
+func (repo *ProductRepository) CreateCat(cat *models.Category) error {
+	return repo.db3.Create(&cat).Error
+}
+
+/*
+//
 func (repo *ProductRepository) Create(p *models.Products) (*models.Products, error) {
 
-	//converting to category 3:40 10/2
-	var sub models.SubCategory
-	subCat := models.SubCategory{
-		SubCatName: p.ProductSubCat,
-		Category:   p.ProductCat,
-	}
-	err2 := repo.db2.Where("sub_cat_name=?", subCat.SubCatName).First(&sub).Error
-	err3 := repo.db2.Where("category=?", subCat.Category).First(&sub).Error
-	if err2 != nil || err3 != nil {
-		_ = repo.db2.Create(&subCat).Error
-	}
+		//converting to category 3:40 10/2
+		var sub models.SubCategory
+		subCat := models.SubCategory{
+			SubCatName: p.ProductSubCat,
+			Category:   p.ProductCat,
+		}
+		err2 := repo.db2.Where("sub_cat_name=?", subCat.SubCatName).First(&sub).Error
+		err3 := repo.db2.Where("category=?", subCat.Category).First(&sub).Error
+		if err2 != nil || err3 != nil {
+			_ = repo.db2.Create(&subCat).Error
+		}
 
 	var cate models.Category
 	cat := models.Category{
@@ -62,6 +102,16 @@ func (repo *ProductRepository) Create(p *models.Products) (*models.Products, err
 		return nil, err
 	}
 	return p, nil
+}
+*/
+
+//
+func (repo *ProductRepository) Create(prod *models.Products) (*models.Products, error) {
+	err := repo.db.Create(&prod).Error
+	if err != nil {
+		return nil, err
+	}
+	return prod, nil
 }
 
 //geting single product
@@ -98,12 +148,14 @@ func (repo *ProductRepository) GetSame(cat string) ([]*models.Products, error) {
 }
 
 //
-func (repo *ProductRepository) Delete(id uint) error {
-	var prod *models.Products
-	err := repo.db.Where("id=?", id).First(&prod).Error
-	if err != nil {
-		return err
-	}
+func (repo *ProductRepository) Delete(prod *models.Products) error {
+	/*
+		var prod *models.Products
+		err := repo.db.Where("id=?", id).First(&prod).Error
+		if err != nil {
+			return err
+		}
+	*/
 	e := repo.db.Delete(&prod).Error
 	return e
 }

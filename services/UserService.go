@@ -7,6 +7,10 @@ import (
 	"AmarShop/repository"
 )
 
+/*
+	DONE MANAGING SERVICE LAYER
+*/
+
 type UserService struct {
 	userRepository *repository.UserRepository
 }
@@ -30,17 +34,31 @@ func (h *UserService) GetAll() ([]*models.User, error) {
 
 //create user :
 func (h *UserService) CreateUser(user *models.User) (*models.User, error, error) {
-	return h.userRepository.Create(user)
+	er := h.userRepository.Check(user)
+	if er == nil {
+		return nil, nil, nil
+	}
+	user2, err := h.userRepository.Create(user)
+
+	return user2, err, er
 }
 
 //update user :
 func (h *UserService) UpdateUser(user *models.User, id uint) (*models.User, error) {
-	return h.userRepository.Update(id, user)
+	user2, err := h.userRepository.Get(id)
+	if err != nil {
+		return nil, err
+	}
+	return h.userRepository.Update(user2, user)
 }
 
 //delete User :
 func (h *UserService) DeleteUser(id uint) error {
-	return h.userRepository.Delete(id)
+	user, err := h.userRepository.Get(id)
+	if err != nil {
+		return err
+	}
+	return h.userRepository.Delete(user)
 }
 
 /*

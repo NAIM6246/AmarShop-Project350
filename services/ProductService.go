@@ -21,7 +21,43 @@ func NewProductService() *ProductService {
 
 //
 func (h *ProductService) CreateProduct(prod *models.Products) (*models.Products, error) {
+
+	subcat := models.SubCategory{
+		SubCatName: prod.ProductSubCat,
+		Category:   prod.ProductCat,
+	}
+	sub, e1 := h.CreateSubCat(&subcat)
+	if e1 != nil {
+		return nil, e1
+	}
+
+	cat := models.Category{
+		CategoryName: prod.ProductCat,
+		SubCatID:     sub.ID,
+	}
+
+	e2 := h.productRepository.CheckCat(&cat)
+	if e2 != nil {
+		e := h.productRepository.CreateCat(&cat)
+		if e != nil {
+			return nil, e
+		}
+	}
+	//create product
 	return h.productRepository.Create(prod)
+}
+
+//
+func (h *ProductService) CreateSubCat(sub *models.SubCategory) (*models.SubCategory, error) {
+	e1 := h.productRepository.CheckSub(sub)
+	if e1 != nil {
+		d, e := h.productRepository.CreateSubCat(sub)
+		if e != nil {
+			return nil, e
+		}
+		return d, nil
+	}
+	return sub, nil
 }
 
 //
@@ -41,5 +77,10 @@ func (h *ProductService) GetSameProduct(cat string) ([]*models.Products, error) 
 
 //
 func (h *ProductService) DeleteProduct(id uint) error {
-	return h.productRepository.Delete(id)
+	prod, e := h.productRepository.Get(id)
+	if e != nil {
+		return e
+	}
+	err := h.productRepository.Delete(prod[0])
+	return err
 }

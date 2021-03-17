@@ -2,12 +2,6 @@ package handler
 
 import (
 	"AmarShop/services"
-	"fmt"
-	"io"
-	"net/http"
-	"os"
-
-	"github.com/go-chi/chi"
 )
 
 //
@@ -23,18 +17,20 @@ func NewFileHandler() *FileHandler {
 }
 
 //
+/*
 func (h *FileHandler) UploadHandler(router chi.Router) {
 	router.Post("/", h.uploadFile)
 }
+*/
 
 //
-func (h *FileHandler) uploadFile(w http.ResponseWriter, r *http.Request) {
-	/*
-		required update:
-			create service layer for upload handler
-			update product data with image source
-	*/
-
+//func (h *FileHandler) uploadFile(w http.ResponseWriter, r *http.Request) {
+/*
+	required update:
+		create service layer for upload handler
+		update product data with image source
+*/
+/*
 	r.ParseMultipartForm(10 << 20)
 
 	file, handler, err := r.FormFile("image")
@@ -68,3 +64,4 @@ func (h *FileHandler) uploadFile(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Image uploaded successfully")
 
 }
+*/

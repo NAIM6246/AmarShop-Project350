@@ -20,6 +20,30 @@ func NewUserRepository(db *conn.DB) *UserRepository {
 	}
 }
 
+//Check
+func (repo *UserRepository) Check(u *models.User) error {
+	var user models.User
+	er := repo.db.Where("mobilenumber=?", u.MOBILENUMBER).First(&user).Error
+	if er == nil {
+		return nil
+	}
+	err := repo.db.Where("email=?", u.EMAIL).First(&user).Error
+	if err == nil {
+		return nil
+	}
+	return er
+}
+
+//Create
+func (repo *UserRepository) Create(user *models.User) (*models.User, error) {
+	err := repo.db.Create(&user).Error
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
+/*
 //Creating user :
 func (repo *UserRepository) Create(u *models.User) (*models.User, error, error) {
 	var use models.User
@@ -53,6 +77,7 @@ func (repo *UserRepository) Create(u *models.User) (*models.User, error, error) 
 	return nil, nil, nil
 
 }
+*/
 
 //Get user by id :
 func (repo *UserRepository) Get(id uint) (*models.User, error) {
@@ -75,15 +100,16 @@ func (repo *UserRepository) GetAll() ([]*models.User, error) {
 }
 
 //update user :
-func (repo *UserRepository) Update(id uint, user2 *models.User) (*models.User, error) {
-	var user models.User
+func (repo *UserRepository) Update(user *models.User, user2 *models.User) (*models.User, error) {
+	/*var user models.User
 	err := repo.db.Model(&models.User{}).Where("id=?", id).First(&user).Error
 	if err != nil {
 		return nil, err
 	}
 	fmt.Println(user)
-	e := repo.db.Model(&user).Updates(user2).Error
-	if e != nil {
+	*/
+	err := repo.db.Model(&user).Updates(user2).Error
+	if err != nil {
 		return nil, err
 	}
 	fmt.Println(user)
@@ -91,12 +117,12 @@ func (repo *UserRepository) Update(id uint, user2 *models.User) (*models.User, e
 }
 
 //delete user :
-func (repo *UserRepository) Delete(id uint) error {
-	var user models.User
+func (repo *UserRepository) Delete(user *models.User) error {
+	/*var user models.User
 	err := repo.db.Where("id=?", id).First(&user).Error
 	if err != nil {
 		return err
-	}
+	}*/
 	e := repo.db.Delete(&user).Error
 	return e
 }

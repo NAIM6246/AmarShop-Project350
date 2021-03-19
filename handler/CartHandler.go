@@ -10,17 +10,22 @@ import (
 	"github.com/go-chi/chi"
 )
 
-type CartHandler struct {
-	cartService *services.CartService
+//
+type ICartHandler interface {
+	IHandler
 }
 
-func NewCartHandler() *CartHandler {
+type CartHandler struct {
+	cartService services.ICartService
+}
+
+func NewCartHandler(cartService services.ICartService) ICartHandler {
 	return &CartHandler{
-		cartService: services.NewCartService(),
+		cartService: cartService,
 	}
 }
 
-func (h *CartHandler) CartHandle(router chi.Router) {
+func (h *CartHandler) Handle(router chi.Router) {
 	router.Post("/", h.createCart)
 	router.Route("/{id}", func(rout chi.Router) {
 		rout.Get("/", h.getCart)

@@ -1,22 +1,25 @@
 package services
 
 import (
-	"AmarShop/config"
-	"AmarShop/conn"
 	"AmarShop/models"
 	"AmarShop/repository"
 )
 
 //
-type LoginService struct {
-	loginrepository *repository.LoginRepository
+type ILoginService interface {
+	LogIn(name string) (*models.User, error)
 }
 
 //
-func NewLoginService() *LoginService {
-	con := conn.ConnectDB(config.NewDBConfig())
+type LoginService struct {
+	loginrepository repository.ILoginRepository
+}
+
+//
+func NewLoginService(loginRepository repository.ILoginRepository) ILoginService {
+	//con := conn.ConnectDB(config.NewDBConfig())
 	return &LoginService{
-		loginrepository: repository.NewLoginRepository(con),
+		loginrepository: loginRepository,
 	}
 }
 

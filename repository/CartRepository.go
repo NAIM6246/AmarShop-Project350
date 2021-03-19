@@ -4,19 +4,23 @@ import (
 	"AmarShop/conn"
 	"AmarShop/models"
 	"fmt"
-
-	"github.com/jinzhu/gorm"
 )
 
-type CartRepository struct {
-	db  *gorm.DB
-	db2 *gorm.DB
+type ICartRepository interface {
+	Create(cart *models.UserCart) (*models.UserCart, error)
+	GetCart(id uint) ([]*models.Products, error)
 }
 
-func NewCartRepository(db *conn.DB) *CartRepository {
+type CartRepository struct {
+	*BaseRepository
+}
+
+func NewCartRepository(db *conn.DB) ICartRepository {
 	return &CartRepository{
-		db:  db.Table(models.UserCartTable()),
-		db2: db.Table(models.ProductsTable()),
+		&BaseRepository{
+			db:  db.Table(models.UserCartTable()),
+			db2: db.Table(models.ProductsTable()),
+		},
 	}
 }
 
@@ -51,14 +55,3 @@ func (repo *CartRepository) GetCart(id uint) ([]*models.Products, error) {
 	fmt.Println("sfdghjk")
 	return pro, nil
 }
-
-/*
-func (repo *OrderRepository) CreateList(list *models.ProductList) (*models.ProductList, error) {
-	err := repo.db.Create(&list).Error
-	if err != nil {
-		return nil, err
-	}
-	fmt.Println("Order Created")
-	return list, nil
-}
-*/

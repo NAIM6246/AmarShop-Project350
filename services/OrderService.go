@@ -1,26 +1,29 @@
 package services
 
 import (
-	"AmarShop/config"
-	"AmarShop/conn"
 	"AmarShop/models"
 	"AmarShop/repository"
 	"fmt"
 )
 
 //
-type OrderService struct {
-	orderRepository *repository.OrderRepository
+type IOrderService interface {
+	CreateOrder(orderIn *models.OrderInput) error
 }
 
-func NewOrderService() *OrderService {
-	con := conn.ConnectDB(config.NewDBConfig())
+//
+type OrderService struct {
+	orderRepository repository.IOrderRepository
+}
+
+func NewOrderService(orderderRepository repository.IOrderRepository) IOrderService {
+	//con := conn.ConnectDB(config.NewDBConfig())
 	return &OrderService{
-		orderRepository: repository.NewOrderRepository(con),
+		orderRepository: orderderRepository,
 	}
 }
 
-func (h *OrderService) CreateOrder(orderIn *models.OrderInput) /**models.OrderInput,*/ error {
+func (h *OrderService) CreateOrder(orderIn *models.OrderInput) error {
 	d, e := h.orderRepository.FindUser(orderIn.Customer)
 	if e != nil {
 		return e
@@ -57,10 +60,4 @@ func (h *OrderService) CreateOrder(orderIn *models.OrderInput) /**models.OrderIn
 	}
 	fmt.Println("Order Created")
 	return nil
-	//return h.orderRepository.Createin(orderIn)
 }
-
-/*
-func (h *OrderService) CreatProductList(list *models.ProductList) (*models.ProductList, error) {
-	return h.orderRepository.CreateList(list)
-}*/

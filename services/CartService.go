@@ -1,21 +1,25 @@
 package services
 
 import (
-	"AmarShop/config"
-	"AmarShop/conn"
 	"AmarShop/models"
 	"AmarShop/repository"
 )
 
 //
-type CartService struct {
-	cartRepository *repository.CartRepository
+type ICartService interface {
+	Createcart(order *models.UserCart) (*models.UserCart, error)
+	GetAll(id uint) ([]*models.Products, error)
 }
 
-func NewCartService() *CartService {
-	con := conn.ConnectDB(config.NewDBConfig())
+//
+type CartService struct {
+	cartRepository repository.ICartRepository
+}
+
+func NewCartService(cartRepository repository.ICartRepository) ICartService {
+	//con := conn.ConnectDB(config.NewDBConfig())
 	return &CartService{
-		cartRepository: repository.NewCartRepository(con),
+		cartRepository: cartRepository,
 	}
 }
 

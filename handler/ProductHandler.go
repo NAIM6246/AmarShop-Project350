@@ -11,17 +11,21 @@ import (
 	"github.com/go-chi/chi"
 )
 
-type ProductHandler struct {
-	productService *services.ProductService
+type IProductHandler interface {
+	IHandler
 }
 
-func NewProductHandler() *ProductHandler {
+type ProductHandler struct {
+	productService services.IProductService
+}
+
+func NewProductHandler(productservice services.IProductService) IProductHandler {
 	return &ProductHandler{
-		productService: services.NewProductService(),
+		productService: productservice,
 	}
 }
 
-func (h *ProductHandler) PHandler(rout chi.Router) {
+func (h *ProductHandler) Handle(rout chi.Router) {
 	rout.Route("/{category}", func(router chi.Router) {
 		router.Get("/product", h.getProductByID)
 		router.Get("/", h.getSameProduct)
@@ -100,8 +104,8 @@ func (h *ProductHandler) getProductByID(w http.ResponseWriter, r *http.Request) 
 	EnableCors(&w)
 	id := param.UInt(r, "category")
 	//fmt.Println(id)
-	productService := services.NewProductService()
-	d, e := productService.GetProductByID(id)
+	//productService := services.NewProductService()
+	d, e := h.productService.GetProductByID(id)
 	if e != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Header().Add("Content-type", "application/json")

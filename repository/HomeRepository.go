@@ -4,23 +4,34 @@ import (
 	"AmarShop/conn"
 	"AmarShop/models"
 	"fmt"
-
-	"github.com/jinzhu/gorm"
 )
 
-type HomeRepository struct {
-	db  *gorm.DB
-	db2 *gorm.DB
-	db3 *gorm.DB
-	db4 *gorm.DB
+type IHomeRepository interface {
+	GetAll() ([]*models.Category, error)
+	GetAllSubCatProducts(cat string, sub string) ([]*models.Products, error)
+	GetAllCatProducts(cat string) ([]*models.Products, error)
+	GetFeatured() ([]*models.Products, error)
+	GetNew() ([]*models.Products, error)
+	Search(str string) ([]*models.Products, error)
+	GetType(typ string) ([]*models.Products, error)
+	About() (string, error)
+	Purchase() (string, error)
+	Privacy() (string, error)
+	Refund() (string, error)
 }
 
-func NewHomeRepository(db *conn.DB) *HomeRepository {
+type HomeRepository struct {
+	*BaseRepository
+}
+
+func NewHomeRepository(db *conn.DB) IHomeRepository {
 	return &HomeRepository{
-		db:  db.Table(models.CategoryTable()),
-		db2: db.Table(models.ProductsTable()),
-		db3: db.Table(models.SubCategoryTable()),
-		db4: db.Table(models.SiteInfoTable()),
+		&BaseRepository{
+			db:  db.Table(models.CategoryTable()),
+			db2: db.Table(models.ProductsTable()),
+			db3: db.Table(models.SubCategoryTable()),
+			db4: db.Table(models.SiteInfoTable()),
+		},
 	}
 }
 

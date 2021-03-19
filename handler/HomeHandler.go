@@ -10,20 +10,24 @@ import (
 	"github.com/go-chi/chi"
 )
 
-//
-type HomeHandler struct {
-	homeService *services.HomeService
+type IHomeHandler interface {
+	IHandler
 }
 
 //
-func NewHomeHandler() *HomeHandler {
+type HomeHandler struct {
+	homeService services.IHomeService
+}
+
+//
+func NewHomeHandler(homeService services.IHomeService) IHomeHandler {
 	return &HomeHandler{
-		homeService: services.NewHomeService(),
+		homeService: homeService,
 	}
 }
 
 //handler method
-func (h *HomeHandler) HomeHandler(router chi.Router) {
+func (h *HomeHandler) Handle(router chi.Router) {
 	router.Route("/{category}", func(router chi.Router) {
 		router.Get("/type", h.getType)
 		router.Get("/", h.getCategoryProducts)

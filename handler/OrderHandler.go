@@ -10,17 +10,21 @@ import (
 	"github.com/go-chi/chi"
 )
 
-type OrderHandler struct {
-	orderService *services.OrderService
+type IOrderHandler interface {
+	IHandler
 }
 
-func NewOrderHandler() *OrderHandler {
+type OrderHandler struct {
+	orderService services.IOrderService
+}
+
+func NewOrderHandler(orderService services.IOrderService) IOrderHandler {
 	return &OrderHandler{
-		orderService: services.NewOrderService(),
+		orderService: orderService,
 	}
 }
 
-func (h *OrderHandler) OrderHandle(router chi.Router) {
+func (h *OrderHandler) Handle(router chi.Router) {
 	router.Post("/", h.createOrder)
 }
 

@@ -1,21 +1,29 @@
 package services
 
 import (
-	"AmarShop/config"
-	"AmarShop/conn"
 	"AmarShop/models"
 	"AmarShop/repository"
 )
 
+//
+type IProductService interface {
+	CreateProduct(prod *models.Products) (*models.Products, error)
+	CreateSubCat(sub *models.SubCategory) (*models.SubCategory, error)
+	GetProductByID(id uint) ([]*models.Products, error)
+	GetAll() ([]*models.Products, error)
+	GetSameProduct(cat string) ([]*models.Products, error)
+	DeleteProduct(id uint) error
+}
+
 type ProductService struct {
-	productRepository *repository.ProductRepository
+	productRepository repository.IProductRepository
 }
 
 //
-func NewProductService() *ProductService {
-	con := conn.ConnectDB(config.NewDBConfig())
+func NewProductService(productReposiroy repository.IProductRepository) IProductService {
+	//con := conn.ConnectDB(config.NewDBConfig())
 	return &ProductService{
-		productRepository: repository.NewProductRepository(con),
+		productRepository: productReposiroy,
 	}
 }
 

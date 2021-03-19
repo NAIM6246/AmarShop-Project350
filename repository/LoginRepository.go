@@ -4,19 +4,24 @@ import (
 	"AmarShop/conn"
 	"AmarShop/models"
 	"fmt"
-
-	"github.com/jinzhu/gorm"
 )
 
 //
-type LoginRepository struct {
-	db *gorm.DB
+type ILoginRepository interface {
+	Login(name string) (*models.User, error)
 }
 
 //
-func NewLoginRepository(db *conn.DB) *LoginRepository {
+type LoginRepository struct {
+	*BaseRepository
+}
+
+//
+func NewLoginRepository(db *conn.DB) ILoginRepository {
 	return &LoginRepository{
-		db: db.Table(models.UserTable()),
+		&BaseRepository{
+			db: db.Table(models.UserTable()),
+		},
 	}
 }
 

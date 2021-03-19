@@ -1,22 +1,35 @@
 package services
 
 import (
-	"AmarShop/config"
-	"AmarShop/conn"
 	"AmarShop/models"
 	"AmarShop/repository"
 )
 
 //
-type HomeService struct {
-	homeRepository *repository.HomeRepository
+type IHomeService interface {
+	GetAllCategory() ([]*models.Category, error)
+	GetSubCategoryProducts(cat string, subcat string) ([]*models.Products, error)
+	GetCategoryProducts(cat string) ([]*models.Products, error)
+	GetFeatured() ([]*models.Products, error)
+	GetNew() ([]*models.Products, error)
+	Search(str string) ([]*models.Products, error)
+	GetType(typ string) ([]*models.Products, error)
+	About() (string, error)
+	Purchase() (string, error)
+	Privacy() (string, error)
+	Refund() (string, error)
 }
 
 //
-func NewHomeService() *HomeService {
-	con := conn.ConnectDB(config.NewDBConfig())
+type HomeService struct {
+	homeRepository repository.IHomeRepository
+}
+
+//
+func NewHomeService(homeRepository repository.IHomeRepository) IHomeService {
+	//con := conn.ConnectDB(config.NewDBConfig())
 	return &HomeService{
-		homeRepository: repository.NewHomeRepository(con),
+		homeRepository: homeRepository,
 	}
 }
 

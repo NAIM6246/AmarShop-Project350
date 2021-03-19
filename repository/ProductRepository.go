@@ -4,23 +4,32 @@ import (
 	"AmarShop/conn"
 	"AmarShop/models"
 	"fmt"
-
-	"github.com/jinzhu/gorm"
 )
 
+type IProductRepository interface {
+	CreateSubCat(sub *models.SubCategory) (*models.SubCategory, error)
+	CheckSub(subcat *models.SubCategory) error
+	CheckCat(cat *models.Category) error
+	CreateCat(cat *models.Category) error
+	Create(prod *models.Products) (*models.Products, error)
+	Get(id uint) ([]*models.Products, error)
+	GetAll() ([]*models.Products, error)
+	GetSame(cat string) ([]*models.Products, error)
+	Delete(prod *models.Products) error
+}
+
 type ProductRepository struct {
-	db  *gorm.DB
-	db2 *gorm.DB
-	db3 *gorm.DB
-	//	catgoryRepository *CategoryRepository
+	*BaseRepository
 }
 
 //
-func NewProductRepository(db *conn.DB) *ProductRepository {
+func NewProductRepository(db *conn.DB) IProductRepository {
 	return &ProductRepository{
-		db:  db.Table(models.ProductsTable()),
-		db2: db.Table(models.SubCategoryTable()),
-		db3: db.Table(models.CategoryTable()),
+		&BaseRepository{
+			db:  db.Table(models.ProductsTable()),
+			db2: db.Table(models.SubCategoryTable()),
+			db3: db.Table(models.CategoryTable()),
+		},
 	}
 }
 
@@ -61,49 +70,6 @@ func (repo *ProductRepository) CheckCat(cat *models.Category) error {
 func (repo *ProductRepository) CreateCat(cat *models.Category) error {
 	return repo.db3.Create(&cat).Error
 }
-
-/*
-//
-func (repo *ProductRepository) Create(p *models.Products) (*models.Products, error) {
-
-		//converting to category 3:40 10/2
-		var sub models.SubCategory
-		subCat := models.SubCategory{
-			SubCatName: p.ProductSubCat,
-			Category:   p.ProductCat,
-		}
-		err2 := repo.db2.Where("sub_cat_name=?", subCat.SubCatName).First(&sub).Error
-		err3 := repo.db2.Where("category=?", subCat.Category).First(&sub).Error
-		if err2 != nil || err3 != nil {
-			_ = repo.db2.Create(&subCat).Error
-		}
-
-	var cate models.Category
-	cat := models.Category{
-		CategoryName: p.ProductCat,
-		SubCatID:     subCat.ID,
-	}
-	e := repo.db3.Where("category_name=?", cat.CategoryName).First(&cate).Error
-	if e != nil {
-		_ = repo.db3.Create(&cat).Error
-	}
-
-	//end of category
-	fmt.Println(p)
-	fmt.Println("Product repo")
-	fmt.Println(subCat)
-	fmt.Println("Prod repo")
-
-	//creating Product
-	//p.CategoryID = cat.ID
-	//fmt.Printf("cat id "+ string(p.CategoryID))
-	err := repo.db.Create(&p).Error
-	if err != nil {
-		return nil, err
-	}
-	return p, nil
-}
-*/
 
 //
 func (repo *ProductRepository) Create(prod *models.Products) (*models.Products, error) {

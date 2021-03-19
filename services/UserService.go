@@ -1,24 +1,28 @@
 package services
 
 import (
-	"AmarShop/config"
-	"AmarShop/conn"
 	"AmarShop/models"
 	"AmarShop/repository"
 )
 
-/*
-	DONE MANAGING SERVICE LAYER
-*/
-
-type UserService struct {
-	userRepository *repository.UserRepository
+//
+type IUserService interface {
+	GetUserByID(id uint) (*models.User, error)
+	GetAll() ([]*models.User, error)
+	CreateUser(user *models.User) (*models.User, error, error)
+	UpdateUser(user *models.User, id uint) (*models.User, error)
+	DeleteUser(id uint) error
 }
 
-func NewUserService() *UserService {
-	con := conn.ConnectDB(config.NewDBConfig())
+//
+type UserService struct {
+	userRepository repository.IUserRepository
+}
+
+func NewUserService(userRepository repository.IUserRepository) IUserService {
+	//con := conn.ConnectDB(config.NewDBConfig())
 	return &UserService{
-		userRepository: repository.NewUserRepository(con),
+		userRepository: userRepository,
 	}
 }
 
@@ -60,9 +64,3 @@ func (h *UserService) DeleteUser(id uint) error {
 	}
 	return h.userRepository.Delete(user)
 }
-
-/*
-func (h *UserService) LogIn(name string) (*models.User, error) {
-	return h.userRepository.Login(name)
-}
-*/

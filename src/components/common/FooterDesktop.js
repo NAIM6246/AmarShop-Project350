@@ -41,7 +41,6 @@ class FooterDesktop extends Component {
                       
                     }
                 }).catch(error=>{
-                    toast.error("something went wrong!Try again!")
                });
             }
     render() {

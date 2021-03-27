@@ -25,7 +25,7 @@ class Collection extends Component {
 
         const view=myList.map((myList,i)=>{
             return  <Col key={i.toString()}className="p-0"key={1} xl={3} lg={3} md={6} sm={6} xs={12}>
-            <Link to={"/productDetails/"+myList.productCode}>
+            <Link to={"/productDetails/"+myList.id}>
             <Card className="collection-image-box card">
                 <img src="images/product2.jpg"></img>
                 <Card.Body>

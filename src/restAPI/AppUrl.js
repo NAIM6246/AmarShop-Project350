@@ -19,10 +19,10 @@ class AppUrl{
 
 
 
-
+    //Done
     /** url for fetching feature,collection,new arrival component  , home folder e featureproduct.js,collection.js,newArrival.js ase*/
     static getProductListByRemark(remark){
-        return this.URL+"home/"+remark;
+        return this.URL+"home/"+remark+"/type";
     }
 
     /**url for fetching all the products of a category  by clicking any category ,page folder e productListCategoryPage e  data load kora hoise*/
@@ -37,7 +37,7 @@ class AppUrl{
      
     /**fetching any products details by clicking on the product ,page folder e product details page e eita load kora hoise*/
     static getProductDetails(productCode){
-        return this.URL+"getProductDetails/"+productCode;
+        return this.URL+"product/"+productCode+"/product";
     }
     /* */
     static getNotificationDetails=this.URL+"getNotificationDetails";
@@ -45,7 +45,8 @@ class AppUrl{
     static getProductListBySearch(searchKey){
         return this.URL+"getProductListBySearch/"+searchKey;
     }
-    
+    static confirmOrder=this.URL+"order/";
+    static productCreate=this.URL+"product/"
 }
 
 export default AppUrl;

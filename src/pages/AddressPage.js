@@ -11,7 +11,8 @@ class AddressPage extends Component {
         this.state={
             id:"",
             quantity:"",
-            size:""
+            size:"",
+            price:""
         }
     }
     
@@ -21,7 +22,8 @@ class AddressPage extends Component {
         const {size}=this.props.location.state;
         const{quantity}=this.props.location.state;
         const{id}=this.props.location.state;
-        this.setState({id:id,size:size,quantity:quantity})
+        const {price}=this.props.location.state;
+        this.setState({id:id,size:size,quantity:quantity,price:price})
         
     }
     render() {
@@ -36,7 +38,7 @@ class AddressPage extends Component {
                 <NavMenuMobile></NavMenuMobile>
              </div>
                <div>
-                <Address id={this.state.id} quantity={this.state.quantity} size={this.state.size}></Address>
+                <Address id={this.state.id} quantity={this.state.quantity} size={this.state.size} price={this.state.price}></Address>
                </div>
                
 

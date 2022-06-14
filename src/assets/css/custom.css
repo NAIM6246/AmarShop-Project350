@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+@import "bigSlider.css";
+@import "button.css";
+@import "card.css";
+@import "fontawesome.css";
+@import "footer.css";
+@import "megaMenu.css";
+@import "navMenuDesktop.css";
+@import "navMenuMobile.css";
+@import "typo.css";
+@import "common.css";
+@import "megaMenuMobile.css";
+@import "responsive.css";
+
+@import "form.css";
+@import "map.css";
+@import "userOnboard.css";
+
+@import "productDetails.css";
+@import "notification.css";
+@import "cart.css";
+
+@import "contact.css";
+@import "footerDesktop.css";
+@import "footerMobile.css";
+@import "registration.css";
+@import "favourite.css";
+@import "categories.css";
+@import "collection.css";
+@import "featuredProducts.css";
+@import "homeTop.css";
+@import "homeTopMobile.css";
+@import "newArrival.css";
+@import "sliderHome.css";
+@import "about.css";
+@import "refund.css";
+@import "purchase.css";
+@import "team.css";
+@import "policy.css";
+@import "suggestedProduct.css";

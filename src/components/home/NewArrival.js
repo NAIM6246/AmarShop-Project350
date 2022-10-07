@@ -41,7 +41,7 @@ class NewArrival extends Component {
 
       const view=myList.map((myList,i)=>{
           return     <div key={i.toString()}>
-          <Link to={"/productDetails/"+myList.productCode}>
+          <Link to={"/productDetails/"+myList.id}>
               <Card className="newArrival-image-box card">
                       <img src="images/product1.jpg"></img>
                       <Card.Body>

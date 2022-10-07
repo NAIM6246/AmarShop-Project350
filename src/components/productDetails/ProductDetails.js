@@ -14,7 +14,9 @@ class ProductDetails extends Component {
             description:"",
             quantity:"null",
             size:"null",
-            id:""
+            id:"",
+            price:"null",
+            ammount:"null"
            
         }
         
@@ -42,8 +44,9 @@ class ProductDetails extends Component {
        var title=this.props.title;
        var imgage=this.props.imgage;
        var  description=this.props.description;
-
-
+       var ammount=this.props.ammount;
+       var price=this.props.price;
+      
        var color=this.props.color;
        var sizeArray=this.props.size.split(',');
 
@@ -68,7 +71,7 @@ class ProductDetails extends Component {
                             <h5 className="Product-Name">{title}</h5>
                             <h6 className="section-sub-title">Some Of Our Exclusive Collection, You May Like Some Of Our Exclusive Collectio</h6>
                             <div className="input-group">
-                                <div className="Product-price-card d-inline ">Price 200</div>
+                                <div className="Product-price-card d-inline ">Price {price}</div>
                                
                                
                             </div>
@@ -85,7 +88,7 @@ class ProductDetails extends Component {
                             </div>
 
                             <h6 className="mt-2">Quantity</h6>
-                            <input type="range" min="1" onChange={this.onQuantityChange}  className="form-control text-center w-50" type="number" />
+                            <input max={ammount} min="1" onChange={this.onQuantityChange}  className="form-control text-center w-50" type="number" />
 
                             <div className="input-group mt-3">
                                 <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
@@ -132,7 +135,7 @@ class ProductDetails extends Component {
                                     <h5 className="Product-Name">{title}</h5>
                                     <h6 className="section-sub-title">Some Of Our Exclusive Collection, You May Like Some Of Our Exclusive Collectio</h6>
                                     <div className="input-group">
-                                        <div className="Product-price-card d-inline ">Price 200</div>
+                                        <div className="Product-price-card d-inline ">Price {price}</div>
                                        
                                        
                                     </div>
@@ -149,7 +152,7 @@ class ProductDetails extends Component {
                                     </div>
 
                                     <h6 className="mt-2">Quantity</h6>
-                                    <input type="range" min="1" onChange={this.onQuantityChange}  className="form-control text-center w-50" type="number" />
+                                    <input type="range" max={ammount} min="1" onChange={this.onQuantityChange}  className="form-control text-center w-50" type="number" />
 
                                     <div className="input-group mt-3">
                                         <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
@@ -158,7 +161,8 @@ class ProductDetails extends Component {
                                            state:{
                                                 id:this.props.productCode,
                                                 size:this.state.size,
-                                                quantity:this.state.quantity
+                                                quantity:this.state.quantity,
+                                                price:this.props.price
 
                                            }
                                        }}><button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>

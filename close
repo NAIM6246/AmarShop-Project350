@@ -1,0 +1,32 @@
+[33m7ce28ff[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #7 from NAIM6246/dev
+[33m3d42739[m[33m ([m[1;31morigin/dev[m[33m)[m Merge branch 'main' into dev
+[33mc50af50[m Merge pull request #6 from NAIM6246/Mahfuzul-Islam
+[33m23afe7a[m making user cart, order page
+[33mdd27f06[m[33m ([m[1;31morigin/Mahfuzul-Islam[m[33m)[m connecting with db for home page products category
+[33m8c599bf[m merging Mahfuzl-Islma with main
+[33m96b80b2[m connecting category subctegory for sidebar
+[33m6f27c46[m main work
+[33mf8408e4[m neewxt
+[33m239492b[m huj
+[33mcb7c4fe[m gettin category and subcategory for menubar at the time of loading homepage for sidebar
+[33mf83a493[m hiding pass
+[33mb6ed10a[m changing UI. making connection with back end
+[33m9c4c8e9[m Add files via upload
+[33m17fa8e8[m multiple language option etc.
+[33me8cbb69[m mobile navbar
+[33ma3d1b70[m slick carousal
+[33m84da122[m accordion
+[33m7f86dbf[m carousal
+[33m210a2ef[m collection component
+[33m46b7710[m categories component
+[33m6ba87dc[m Merge pull request #3 from NAIM6246/Mahfuzul-Islam
+[33m43e2b06[m feature product component
+[33mfaf055a[m managing transition
+[33mba36c40[m Merge pull request #2 from NAIM6246/Mahfuzul-Islam
+[33m0dc1868[m managing css
+[33m16d3fe7[m configure routing and installing some packages
+[33m948b72d[m dependencies
+[33m858e382[m updating manifest file
+[33m2dc34c6[m Merge pull request #1 from NAIM6246/Mahfuzul-Islam
+[33m9ef90a7[m installing react
+[33mab8b52c[m Initial commit

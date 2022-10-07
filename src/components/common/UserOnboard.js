@@ -89,7 +89,7 @@ class UserOnboard extends Component {
             <Fragment>
                 <Container className="p-5">
                     <Row>
-                        <Col lg={4} md={4} sm={8} xs={12}>
+                        <Col lg={12} md={12} sm={8} xs={12}>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>Card Title</Card.Title>

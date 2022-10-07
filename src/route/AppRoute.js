@@ -17,6 +17,7 @@ import ProductListSubCategoryPage from '../pages/ProductListSubCategoryPage';
 import SearchPage from '../pages/SearchPage';
 import AddressPage from '../pages/AddressPage';
 import CartPage from '../pages/CartPage';
+import postingProductDetails from '../components/admin/postingProductDetails';
 
 
 class AppRoute extends Component {
@@ -42,6 +43,7 @@ class AppRoute extends Component {
                    <Route exact path="/searchProductList/:searchKey" component={SearchPage}></Route>
                    <Route exact path="/address" component={AddressPage}></Route>
                    <Route exact path="/cartList/:userName" component={CartPage}></Route>
+                   <Route exact path="/admin" component={postingProductDetails}></Route>
 
                </Switch> 
             </Fragment>
